@@ -25,15 +25,30 @@ applicationRouter
     .post('/user/:id', function(req, res, next) {
         var application = new Application(req.body);
         User.findOne({"_id":req.params.id},function (err, user_) {
-            if (err) next(err);
+            if (err) return next(err);
             application.creator = user_;
             application.save(function(err, application) {
-                if (err) next(err);
+                if (err) return next(err);
                 User.findByIdAndUpdate(user_._id, {$push:{"registratedApps":application._id}}, function (err, user_){
                     if (err) next(err);
                     res.json(user_);
                 });
             });
+        });
+    })
+    .post('/:idA/addUser/:idU', function(req, res, next) {
+        User.findOne({"_id":req.params.idU},function (err, user_) {
+            if (err) return next(err);
+            Application.findOne({"_id":req.params.idA}, function (err, app_) {
+                if (err) return next(err);
+                User.findByIdAndUpdate(user_._id, {$push:{"followedApps":app_._id}}, function (err, user_){
+                    if (err) return next(err);
+                    Application.findByIdAndUpdate(app_._id, {$push:{"followers":user_._id}}, function (err, app_){
+                        if (err) next(err);
+                        res.json(app_);
+                    });
+                });
+            })
         });
     })
     .delete('/:id', function(req, res, next) {

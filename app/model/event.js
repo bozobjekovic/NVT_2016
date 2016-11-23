@@ -10,12 +10,17 @@ var evetnSchema = new Schema({
         type: String,
         required: true
     },
+    stack: {
+        type: String,
+        required: true
+    },
     application: {
         type: Schema.Types.ObjectId,
-        ref: 'Application'
+        ref: 'Application',
+        required: true
     }
 });
 
-var Event = mongoose.model('Event', evetnSchema);
+var AppEvent = mongoose.model('AppEvent', evetnSchema);
 
-module.exports = Event;
+module.exports = AppEvent;

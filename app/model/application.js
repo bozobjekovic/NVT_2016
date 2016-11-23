@@ -32,7 +32,7 @@ var applicationSchema = new Schema({
     }],
     events: [{
         type: Schema.Types.ObjectId,
-        ref: 'Event'
+        ref: 'AppEvent'
     }]
 });
 

@@ -1,15 +1,12 @@
 var express = require('express');
 var User = require('../../app/model/user');
 
-var Event = require('../../app/model/event');
-
 // Router for users
 var userRouter = express.Router();
 
 userRouter
     .get('/', function(req, res) {
         User.find({}, function(err, data, next) {
-            console.log(data[0].email);
             res.json(data);
         });
     })
