@@ -1,5 +1,9 @@
 var express = require('express');
+var deepPopulate = require('mongoose-deep-populate');
 var User = require('../../app/model/user');
+
+var Application = require('../../app/model/application');
+var AppEvent = require('../../app/model/event');
 
 // Router for users
 var userRouter = express.Router();
@@ -19,29 +23,20 @@ userRouter
             if (err) next(err);
             res.json(user_);
         });
-    })
+    }) // Listing all events for user with user id
     .get('/:id/events', function(req, res, next) {
-        User.findOne({"_id":req.params.id}, function (err, user_) {
-            if(err) next(err);
-            var events = [];
-            for(app in user_.registratedApps) {
-                console.log(app.name);
-            }
-        });
-    })
+        User.findOne({"_id": req.params.id}).
+            populate('registratedApps.events').
+            exec(function(err, user_) {
+                if (err) next(err);
+                console.log(user_.registratedApps)
+            });
+    }) // Adding new user
     .post('/', function(req, res, next) {
         var user = new User(req.body);
         user.save(function(err, user_) {
             if (err) next(err);
             res.json(user_);
-        });
-    })
-    .delete('/:id', function(req, res, next) {
-        User.remove({
-            "_id": req.params.id
-        }, function(err, successIndicator) {
-            if (err) next(err);
-            res.json(successIndicator);
         });
     });
 

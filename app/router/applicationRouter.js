@@ -21,8 +21,8 @@ applicationRouter
             if (err) next(err);
             res.json(app_);
         });
-    })
-    .post('/user/:id', function(req, res, next) {
+    }) // Creating new application, setting it's creator and adding it to users registrated apps
+    .post('/creator/:id', function(req, res, next) {
         var application = new Application(req.body);
         User.findOne({"_id":req.params.id},function (err, user_) {
             if (err) return next(err);
@@ -35,7 +35,7 @@ applicationRouter
                 });
             });
         });
-    })
+    }) // Adding access to user with idU, for appplication with id idA
     .post('/:idA/addUser/:idU', function(req, res, next) {
         User.findOne({"_id":req.params.idU},function (err, user_) {
             if (err) return next(err);
@@ -49,14 +49,6 @@ applicationRouter
                     });
                 });
             })
-        });
-    })
-    .delete('/:id', function(req, res, next) {
-        Application.remove({
-            "_id": req.params.id
-        }, function(err, successIndicator) {
-            if (err) next(err);
-            res.json(successIndicator);
         });
     });
 
