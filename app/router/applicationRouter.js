@@ -29,7 +29,7 @@ applicationRouter
             application.creator = user_;
             application.save(function(err, application) {
                 if (err) return next(err);
-                User.findByIdAndUpdate(user_._id, {$push:{"registratedApps":application._id}}, function (err, user_){
+                User.findByIdAndUpdate(user_._id, {$push:{"registratedApps":application._id, "followedApps":application._id}}, function (err, user_){
                     if (err) next(err);
                     res.json(user_);
                 });

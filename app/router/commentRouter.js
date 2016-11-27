@@ -1,5 +1,5 @@
 var express = require('express');
-var Comment = require('../../app/model/comment');
+var Comment = require('../../app/model/comment').model;
 
 var AppEvent = require('../../app/model/event');
 
@@ -30,7 +30,7 @@ commentRouter
             if (err) return next(err);
             AppEvent.findByIdAndUpdate(comment.event, {$push:{"comments":comment_._id}}, function (err, event_){
                 if (err) next(err);
-                res.json(event_);
+                res.json(comment_);
             });
         });
     })

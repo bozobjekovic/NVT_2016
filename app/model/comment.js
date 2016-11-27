@@ -14,8 +14,7 @@ var commentSchema = new Schema({
     },
     event: {
         type: Schema.Types.ObjectId,
-        ref: 'AppEvent',
-        required: true
+        ref: 'AppEvent'
     }
 });
 
@@ -32,4 +31,5 @@ commentSchema.pre('save', function(next) {
 
 var Comment = mongoose.model('Comment', commentSchema);
 
-module.exports = Comment;
+module.exports.model = Comment;
+module.exports.schema = commentSchema;

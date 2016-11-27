@@ -47,7 +47,7 @@ userRouter
 function getAllEventsByVersion(idU, idA, version_, res, callback) {
     User.findOne({"_id": idU})
         .populate({
-            path: 'registratedApps',
+            path: 'followedApps',
             match: { _id: idA},
         })
         .exec(function(err, apps_) {
@@ -58,7 +58,7 @@ function getAllEventsByVersion(idU, idA, version_, res, callback) {
 function getAllEventsByFragment(idU, idA, fragment_, res, callback) {
     User.findOne({"_id": idU})
         .populate({
-            path: 'registratedApps',
+            path: 'followedApps',
             match: { _id: idA},
         })
         .exec(function(err, apps_) {
@@ -69,7 +69,7 @@ function getAllEventsByFragment(idU, idA, fragment_, res, callback) {
 function getAllEventsForApp(idU, idA, res, callback) {
     User.findOne({"_id": idU})
         .populate({
-            path: 'registratedApps',
+            path: 'followedApps',
             match: { _id: idA},
         })
         .exec(function(err, apps_) {
@@ -80,7 +80,7 @@ function getAllEventsForApp(idU, idA, res, callback) {
 function getAllEventsForUser(id, res, callback) {
     User.findOne({"_id": id})
         .populate({
-            path: 'registratedApps'
+            path: 'followedApps'
         })
         .exec(function(err, apps_) {
             execute(err, apps_, res, "", callback);
@@ -92,26 +92,26 @@ function getAllEventsForUser(id, res, callback) {
     var itemsProcessed = 0;
     if(matchers == ""){
         var options = {
-            path: 'registratedApps.events',
+            path: 'followedApps.events',
             model: 'AppEvent',
         };
     }
     else{
         var options = {
-            path: 'registratedApps.events',
+            path: 'followedApps.events',
             model: 'AppEvent',
             match: matchers,
         };
     }
     if (err) next(err);
     User.populate(apps_, options, function (err, user_) {
-        if (user_.registratedApps.length === 0) {
+        if (user_.followedApps.length === 0) {
             callback(res, []);
         } else {
-            user_.registratedApps.forEach(function(value){
+            user_.followedApps.forEach(function(value){
                 events.push(value.events);
                 itemsProcessed++;
-                if (itemsProcessed === user_.registratedApps.length) {
+                if (itemsProcessed === user_.followedApps.length) {
                     callback(res, events);
                 }                      
             });
