@@ -53,7 +53,7 @@ eventRouter
                             }
                          });                         
                     });
-                    res.json(app_);
+                    res.json(event_);
                 });
             });
         });
