@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var userRouter = require("../app/router/userRouter");
 var applicationRouter = require("../app/router/applicationRouter");
 var eventRouter = require("../app/router/eventRouter");
+var commentRouter = require("../app/router/commentRouter");
 
 mongoose.connect('mongodb://localhost/errorTracking');
 
@@ -22,6 +23,7 @@ var port = 8080;
 app.use('/api/users', userRouter);
 app.use('/api/applications', applicationRouter);
 app.use('/api/events', eventRouter);
+app.use('/api/comments', commentRouter);
 
 // Error middleware
 app.use(function(err, req, res, next) {

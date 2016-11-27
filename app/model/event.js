@@ -18,7 +18,11 @@ var evetnSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Application',
         required: true
-    }
+    },
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+    }]
 });
 
 var AppEvent = mongoose.model('AppEvent', evetnSchema);
