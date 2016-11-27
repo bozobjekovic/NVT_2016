@@ -36,7 +36,7 @@ applicationRouter
             });
         });
     }) // Adding access to user with idU, for appplication with id idA
-    .post('/:idA/addUser/:idU', function(req, res, next) {
+    .put('/:idA/addUser/:idU', function(req, res, next) {
         User.findOne({"_id":req.params.idU},function (err, user_) {
             if (err) return next(err);
             Application.findOne({"_id":req.params.idA}, function (err, app_) {
