@@ -25,12 +25,7 @@ userRouter
         });
     }) // Listing all events for user with user id
     .get('/:id/events', function(req, res, next) {
-        User.findOne({"_id": req.params.id}).
-            populate('registratedApps.events').
-            exec(function(err, user_) {
-                if (err) next(err);
-                console.log(user_.registratedApps)
-            });
+        getEventsByIDUser(req.params.id, res, returnEvents)
     }) // Adding new user
     .post('/', function(req, res, next) {
         var user = new User(req.body);
@@ -39,5 +34,38 @@ userRouter
             res.json(user_);
         });
     });
+
+function returnEvents(res, events) {
+    res.json(events);
+}
+
+function getEventsByIDUser(id, res, callback) {
+    var events = [];
+    var itemsProcessed = 0;
+    User.findOne({"_id": id})
+        .populate({
+            path: 'registratedApps'
+        })
+        .exec(function(err, apps_) {
+            var options = {
+                path: 'registratedApps.events',
+                model: 'AppEvent',
+            };
+            if (err) next(err);
+            User.populate(apps_, options, function (err, user_) {
+                if (user_.registratedApps.length === 0) {
+                    callback(res, []);
+                } else {
+                    user_.registratedApps.forEach(function(value){
+                        events.push(value.events);
+                        itemsProcessed++;
+                        if (itemsProcessed === user_.registratedApps.length) {
+                            callback(res, events);
+                        }                      
+                    });
+                }
+            });
+        });
+ }
 
 module.exports = userRouter;
