@@ -1,15 +1,29 @@
 (function(angular) {
 	'use strict';
 
-  var app = angular.module('nvtClientApp', ['ngRoute','ngResource']);
-
-  app.config(function($routeProvider) {
-    $routeProvider
-    .when('/index',{
-      templateUrl: 'index.html'
-    })
-    .otherwise({
-      redirectTo:'/index'
-    });
-  });
+  angular
+    .module('nvtClientApp', [
+        'ngResource',
+        'ngRoute',
+        'restangular'
+    ])
+    .config(function($routeProvider) {
+        $routeProvider
+        .when('/',{
+          templateUrl: 'views/main.html'
+        })
+        .otherwise({
+          redirectTo:'/'
+        });
+     })
+     .run(['Restangular', '$log', function(Restangular, $log) {
+        Restangular.setBaseUrl('app');
+        Restangular.setErrorInterceptor(function(response) {
+            if (response.status === 500) {
+                $log.info("internal server error");
+                return true;
+            }
+            return true;
+        });
+    }]);
 })(angular);

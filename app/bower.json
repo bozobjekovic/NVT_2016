@@ -1,0 +1,18 @@
+{
+  "name": "error-tracking-client",
+  "description": "NVT project - first part",
+  "authors": [
+    "Tim 9"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/bozobjekovic/NVT_2016",
+  "dependencies": {
+    "angular": "^1.6.1",
+    "angular-resource": "^1.6.1",
+    "angular-route": "^1.6.1",
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "restangular": "^1.6.1",
+    "bootstrap-sass": "bootstrap-sass-official#^3.3.7"
+  }
+}

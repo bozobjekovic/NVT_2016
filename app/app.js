@@ -26,7 +26,7 @@ app.use('/api/events', eventRouter);
 app.use('/api/comments', commentRouter);
 
 app.use('/app', express.static(__dirname + '/client'));
-app.use('/app/client/bower_components', express.static(__dirname + '/app/client/bower_components'));
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 // Error middleware
 app.use(function(err, req, res, next) {
