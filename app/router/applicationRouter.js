@@ -31,7 +31,7 @@ applicationRouter
                 if (err) return next(err);
                 User.findByIdAndUpdate(user_._id, {$push:{"registratedApps":application._id, "followedApps":application._id}}, function (err, user_){
                     if (err) next(err);
-                    res.json(user_);
+                    res.json(application);
                 });
             });
         });
@@ -45,7 +45,7 @@ applicationRouter
                     if (err) return next(err);
                     Application.findByIdAndUpdate(app_._id, {$push:{"followers":user_._id}}, function (err, app_){
                         if (err) next(err);
-                        res.json(app_);
+                        res.json(user_);
                     });
                 });
             })
