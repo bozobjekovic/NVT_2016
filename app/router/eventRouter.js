@@ -10,7 +10,7 @@ var transporter = nodemailer.createTransport("SMTP", {
     service: 'Gmail',
     auth: {
         user: "bozo.bjekovic@gmail.com",
-        pass: ""
+        pass: "753570"
     }
 
 });
@@ -71,7 +71,7 @@ function email_object(mailTo) {
 
 function send(mailTo){
     transporter.sendMail(email_object(mailTo), function(err, info){
-        if (err) next(err);
+        if (err) return (err);
     });
 }
 
