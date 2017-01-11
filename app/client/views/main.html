@@ -5,37 +5,17 @@
 				<h3>Applications</h3>
 			</div>
 			<br>
-		  	<div class="row">
+		  	<div class="row" ng-repeat="app in applications">
 		    	<div class="col-md-4">
 		      		<div class="thumbnail">
-						<a href="application.html"><img src="images/pc.jpg" class="img-responsive" style="height: 25%; width: 100%"></a>
+						<a ng-href="http://localhost:8080/app/#!/application">
+							<img src="images/pc.jpg" class="img-responsive" style="height: 25%; width: 100%">
+						</a>
 						<div class="caption">
-							<h5><a href="application.html">Angular JS</a></h5> <br>
-							<p>Description: Front End</p>
-							<p>Version: 7.2</p>
-							<p>Repository URL: /trackIt/apps/thisOne</p>
-						</div>
-					</div>
-				</div>
-		    	<div class="col-md-4">
-		      		<div class="thumbnail">
-							<a href="application.html"><img src="images/pc1.jpg" class="img-responsive" style="height: 25%; width: 100%"></a>
-						<div class="caption">
-							<h5><a href="application.html">Spring mvc</a></h5> <br>
-							<p>Description: Back End</p>
-							<p>Version: 2.4</p>
-							<p>Repository URL: /trackIt/apps/this2</p>
-						</div>
-					</div>
-				</div>
-		    	<div class="col-md-4">
-		      		<div class="thumbnail">
-							<a href="application.html"><img src="images/pc2.jpg" class="img-responsive" style="height: 25%; width: 100%"></a>
-						<div class="caption">
-							<h5><a href="application.html">Node JS</a></h5> <br>
-							<p>Description: Front End</p>
-							<p>Version: 1.2</p>
-							<p>Repository URL: /trackIt/apps/this3</p>
+							<h5><a ng-href="http://localhost:8080/app/#!/application">{{app.name}}</a></h5> <br>
+							<p>Description: {{app.description}}</p>
+							<p>Version: {{app.version}}</p>
+							<p>Repository Link: {{app.repositoryLink}}</p>
 						</div>
 					</div>
 				</div>

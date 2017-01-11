@@ -23,11 +23,11 @@
 							<!-- Collect the nav links, forms, and other content for toggling -->
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="index.html">Home</a></li>
-									<li><a href="about.html">About</a></li>
-									<li><a href="registerApplication.html">Register Application</a></li>
-									<li style="margin-left: 150px;"><a href="login.html">Log In</a></li>
-									<li><a href="register.html">Register</a></li>
+									<li class="active"><a href="#">Home</a></li>
+									<li><a ng-href="http://localhost:8080/app/#!/about">About</a></li>
+									<li><a ng-href="http://localhost:8080/app/#!/registerApplication">Register Application</a></li>
+									<li style="margin-left: 150px;"><a ng-href="http://localhost:8080/app/#!/login">Log In</a></li>
+									<li><a ng-href="http://localhost:8080/app/#!/register">Register</a></li>
 								</ul>
 							</div>
 						</div>
@@ -51,8 +51,20 @@
 		<script src="../bower_components/jquery/dist/jquery.js"></script>
 	    <script src="../bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
 		<script src="../bower_components/lodash/lodash.js"></script>
+	    <script src="../bower_components/angular-lodash-module/angular-lodash-module.js"></script>
 		<script src="../bower_components/restangular/dist/restangular.js"></script>
 	    <script src="app.js"></script>
+	    
+		<script src="scripts/main-ctrl.js"></script>
+		<script src="scripts/main-factory.js"></script>
+		<script src="scripts/registerApp-ctrl.js"></script>
+		<script src="scripts/registerApp-factory.js"></script>
+		<script src="scripts/registerUser-ctrl.js"></script>
+		<script src="scripts/registerUser-factory.js"></script>
+		<script src="scripts/application-ctrl.js"></script>
+		<script src="scripts/application-factory.js"></script>
+		<script src="scripts/event-ctrl.js"></script>
+		<script src="scripts/event-factory.js"></script>
 	    
 	</body>
 </html>

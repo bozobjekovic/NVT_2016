@@ -7,13 +7,12 @@
 			<div class="feature-grid" style="padding-left: 25%; padding-right: 25%;">
 				<div class="form-group">
 					<form>
-						<input type="text" class="form-control" placeholder="Your Name" required=""> <br>
-						<input type="text" class="form-control" placeholder="Your Surname" required=""> <br>
-						<input type="text" class="form-control" placeholder="Your Username" required=""> <br>
-						<input type="email" class="form-control" id="inputEmail3" placeholder="Your Email" required=""> <br>
-						<input type="password" class="form-control" id="inputPassword3" placeholder="Your Password" required=""> <br>
-						<input type="password" class="form-control" id="inputPassword3" placeholder="Repeat Your Password" required=""> <br> <br>
-    							<button type="submit" class="btn btn-warning"style="width: 100%;"><b>Register</b></button>
+						<input name="name" type="text" class="form-control" placeholder="Your Name *" required ng-model="userCreate.name"> <br>
+						<input name="surName" type="text" class="form-control" placeholder="Your Surname *" required ng-model="userCreate.surName"> <br>
+						<input name="email" type="email" class="form-control" id="inputEmail3" placeholder="Your Email *" required ng-model="userCreate.email"> <br>
+						<input name="password" type="password" class="form-control" id="inputPassword3" placeholder="Your Password *" required ng-model="userCreate.password"> <br>
+						<input name="password" type="password" class="form-control" id="inputPassword3" placeholder="Repeat Your Password *" required> <br> <br>
+    					<button type="submit" class="btn btn-warning" style="width: 100%;" ng-click="submitUserForm()"><b>Register</b></button>
 					</form>
 				</div>
 			</div>

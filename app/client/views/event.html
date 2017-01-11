@@ -10,32 +10,28 @@
 			      		<tr>
 			        		<td>Application Name</td>
 			        		<td>
-								<a href="application.html"> <b>Spring mvc</b> </a>
+								<a ng-href="http://localhost:8080/app/#!/application"> <b>{{event.application.name}}</b> </a>
 							</td>
 			      		</tr>
 			      		<tr>
 			        		<td>Event Name</td>
-			        		<td>Zana</td>
+			        		<td>?</td>
 			      		</tr>
 			      		<tr>
-			        		<td>Event Description</td>
-			        		<td>Bilbija</td>
-			      		</tr>
-			      		<tr>
-			        		<td>Application Version</td>
-			        		<td>7.2</td>
+			        		<td>Version</td>
+			        		<td>{{event.version}}</td>
 			      		</tr>
 			      		<tr>
 			        		<td>Stack Trace</td>
-			        		<td>9m Tomcat started on port(s): 8080 (http)</td>
+			        		<td>{{event.stack}}</td>
 			      		</tr>
 			      		<tr>
 			        		<td>Date & Time</td>
-			        		<td>2017-01-06 15:15:15</td>
+			        		<td>{{event.timeStamp}}</td>
 			      		</tr>
 			      		<tr>
 			        		<td>Fragment</td>
-			        		<td>Controller</td>
+			        		<td>{{event.fragment}}</td>
 			      		</tr>
 			  		</tbody>
 			  	</table>
