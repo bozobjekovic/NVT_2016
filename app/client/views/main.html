@@ -5,17 +5,17 @@
 				<h3>Applications</h3>
 			</div>
 			<br>
-		  	<div class="row" ng-repeat="app in applications">
-		    	<div class="col-md-4">
+		  	<div class="row">
+		    	<div class="col-md-4" ng-repeat="application in applications">
 		      		<div class="thumbnail">
-						<a ng-href="http://localhost:8080/app/#!/application">
+						<a href ng-click="getApplication(application)">
 							<img src="images/pc.jpg" class="img-responsive" style="height: 25%; width: 100%">
 						</a>
 						<div class="caption">
-							<h5><a ng-href="http://localhost:8080/app/#!/application">{{app.name}}</a></h5> <br>
-							<p>Description: {{app.description}}</p>
-							<p>Version: {{app.version}}</p>
-							<p>Repository Link: {{app.repositoryLink}}</p>
+							<h5><a href ng-click="getApplication(application)">{{application.name}}</a></h5> <br>
+							<p>Description: {{application.description}}</p>
+							<p>Version: {{application.version}}</p>
+							<p>Repository Link: {{application.repositoryLink}}</p>
 						</div>
 					</div>
 				</div>

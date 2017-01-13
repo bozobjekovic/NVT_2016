@@ -7,7 +7,7 @@ angular.module('nvtClientApp')
 
             retVal.submitRegisterApp = function(appCreate) {
                 if (appCreate.name && appCreate.description && appCreate.domain) {
-                    return Restangular.all('/api/applications/creator/:id', {_id: '@id'}).post(appCreate)
+                    return Restangular.all('api/applications/creator/', id).post(appCreate)
                         .then(function(data) {
                             $location.path('/');
                         })

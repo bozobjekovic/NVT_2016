@@ -4,18 +4,11 @@ angular.module('nvtClientApp')
 
         var retVal = {};
 		var application = {};
-		var event = {};
 
 		retVal.getApplication = function(id) {
-			return Restangular.one("/api/applications/:id", {_id: '@id'}).get().then(function(entry) {
+			return Restangular.one("api/applications/", id).get().then(function(entry) {
 				application = entry;
 				return application;
-    		});
-		};
-		retVal.getEvent = function(id) {
-			return Restangular.one("/api/events/:id", {_id: '@id'}).get().then(function(entry) {
-				event = entry;
-				return event;
     		});
 		};
 

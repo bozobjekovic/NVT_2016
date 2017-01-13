@@ -28,11 +28,11 @@
 		  templateUrl: 'views/register.html',
           controller: 'registerUserCtrl'
 		})
-		.when('/application',{
+		.when('/application/:param',{
 		  templateUrl: 'views/application.html',
           controller: 'applicationCtrl'
 		})
-		.when('/event',{
+		.when('/event/:param',{
 		  templateUrl: 'views/event.html',
           controller: 'eventCtrl'
 		})
@@ -40,14 +40,4 @@
           redirectTo:'/'
         });
      })
-     .run(['Restangular', '$log', function(Restangular, $log) {
-        Restangular.setBaseUrl('app');
-        Restangular.setErrorInterceptor(function(response) {
-            if (response.status === 500) {
-                $log.info("internal server error");
-                return true;
-            }
-            return true;
-        });
-    }]);
 })(angular);

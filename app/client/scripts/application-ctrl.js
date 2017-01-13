@@ -2,14 +2,16 @@
 	'use strict';
 	
 	angular.module('nvtClientApp')
-		.controller('applicationCtrl', ['$scope', '$rootScope', 'applicationFactory',
-		    function($scope, $rootScope, applicationFactory) {
+		.controller('applicationCtrl', ['$scope', '$routeParams', '$location', 'applicationFactory',
+		    function($scope, $routeParams, $location, applicationFactory) {
 
-			applicationFactory.getApplication($rootScope.application.id).then(function(item) {
-			      $scope.application = item;
+			var param = $routeParams.param;
+			
+			applicationFactory.getApplication(param).then(function(item) {
+				$scope.application = item;
 			});
-			applicationFactory.getEvent($rootScope.event.id).then(function(item) {
-			      $scope.event = item;
-			});
+			$scope.getEvent = function(event){
+				$location.path('/event/' + event._id);
+			}
 		}])
 })(angular);

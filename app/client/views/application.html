@@ -6,7 +6,7 @@
 			<div class="feature-top" style="margin-top: -5%; margin-bottom: -3%">
 				<h3>Application Data</h3>
 			</div>
-		  	<div class="table-responsive" style="margin-left: 20%; margin-right: 20%; border: 1px solid gray; border-radius: 15px; padding: 10px;">          
+		  	<div class="table-responsive" ng-controller="applicationCtrl" style="margin-left: 20%; margin-right: 20%; border: 1px solid gray; border-radius: 15px; padding: 10px;">          
 				<table class="table">
 			    	<tbody>
 			      		<tr>
@@ -41,40 +41,22 @@
 			<div class="feature-top" style="margin-top: 5%; margin-bottom: -3%">
 				<h3>Events</h3>
 			</div>
-		  	<div class="table-responsive" style="margin-left: 20%; margin-right: 20%; border: 1px solid gray; border-radius: 15px; padding: 10px;">          
+		  	<div class="table-responsive" ng-controller="eventCtrl" style="margin-left: 20%; margin-right: 20%; border: 1px solid gray; border-radius: 15px; padding: 10px;">          
 				<div class="comment-list-scroll">
 					<div class="profile-list">
-						<div class="comment-listItem">
-							<a href="http://localhost:8080/app/#!/event">
+						<div class="comment-listItem" ng-repeat="event in events">
+							<a href ng-click="getEvent(event)">
 								<div class="comment-grid-left" style="margin-top: 30px">
 									<img src="images/pc.jpg" class="img-thumbnail">
 								</div>
 							</a>
 							<div class="comment-grid-right">
 								<div class="comment-listItem-text">
-									<a href="http://localhost:8080/app/#!/event">
-										<h4>Event Name</h4>
+									<a href ng-click="getEvent(event)">
+										<h4>Text: {{event.text}}</h4>
 									</a>
-									<p>Event Description</p>
-									<p>Date & Time</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="profile-list">
-						<div class="comment-listItem">
-							<a href="http://localhost:8080/app/#!/event">
-								<div class="comment-grid-left" style="margin-top: 30px">
-									<img src="images/pc1.jpg" class="img-thumbnail">
-								</div>
-							</a>
-							<div class="comment-grid-right">
-								<div class="comment-listItem-text">
-									<a href="http://localhost:8080/app/#!/event">
-										<h4>Event Name</h4>
-									</a>
-									<p>Event Description</p>
-									<p>Date & Time</p>
+									<p>Fragment: {{event.fragment}}</p>
+									<p>Stack: {{event.stack}}</p>
 								</div>
 							</div>
 						</div>

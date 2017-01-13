@@ -1,22 +1,17 @@
 angular.module('nvtClientApp')
-    .factory('registerUserFactory', ['Restangular', '$location', '$window',
-        function(Restangular, $location, $window) {
-            'use strict';
+    .factory('registerUserFactory', ['Restangular', '$window', function(Restangular, $window) {
+        'use strict';
 
-            var retVal = {};
+        var retVal = {};
 
-            retVal.submitRegisterUser = function(userCreate) {
-            	console.log(userCreate);
-                if (userCreate.email && userCreate.password && userCreate.name && userCreate.surName) {
-                    return Restangular.all('/api/users/').post(userCreate)
-                        .then(function(data) {
-                            $location.path('/');
-                        })
-                } else {
-                    $window.alert('Fill required filleds!');
-                }
-            };
+        retVal.submitRegisterUser = function(userCreate) {
+            if (userCreate.email && userCreate.password && userCreate.name && userCreate.surName) {
+                return Restangular.all('api/users/').post(userCreate).then(function(data) {
+                    })
+            } else {
+                $window.alert('Fill required filleds!');
+            }
+        };
 
-            return retVal;
-        }
-    ]);
+        return retVal;
+    }]);

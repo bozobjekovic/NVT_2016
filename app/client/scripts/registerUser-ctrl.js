@@ -12,9 +12,11 @@
                     surName: ''
                 };
 
-                $scope.submitUserForm = function() {
-                	registerUserFactory.submitRegisterUser($scope.userCreate);
-                };
+                $scope.submitRegisterUser = function() {
+	                registerUserFactory.submitRegisterUser($scope.userCreate).then(function(user) {
+					      $scope.userCreate = user;
+					});
+                }
             }
         ]);
 
