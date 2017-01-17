@@ -4,18 +4,21 @@ angular.module('nvtClientApp')
 
         var retVal = {};
 		var event = {};
-		var events = [];
+		var comments = [];
 
-		retVal.getEvents = function() {
-			return Restangular.all("api/events/").getList().then(function(items) {
-				events = items;
-				return events;
-    		});
-		};
 		retVal.getEvent = function(id) {
 			return Restangular.one("api/events/", id).get().then(function(entry) {
 				event = entry;
 				return event;
+    		});
+		};
+		retVal.getComments = function(id) {
+			return Restangular.one("api/comments/event/", id).get().then(function(item) {
+				if(item != null) {
+					comments = item.comments;
+					console.log(comments);
+				}
+				return comments;
     		});
 		};
 

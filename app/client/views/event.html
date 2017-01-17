@@ -52,48 +52,19 @@
 					<div class="clearfix"></div> <br>
 					
 					<div class="profile-list">
-						<div class="comment-listItem">
+						<div class="comment-listItem" ng-repeat="comment in comments">
 							<div class="comment-grid-left" style="margin-top: 30px">
 								<img src="images/pc.jpg" class="img-thumbnail">
 							</div>
 							<div class="comment-grid-right">
 								<div class="comment-listItem-text">
-									<h4>Username</h4>
-									<p>Description</p>
-									<p>date</p>
+									<h4>{{comment.user.username}}</h4>
+									<p>{{comment.text}}</p>
+									<p>{{comment.createdAt}}</p>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="profile-list">
-						<div class="comment-listItem">
-							<div class="comment-grid-left" style="margin-top: 30px">
-								<img src="images/pc1.jpg" class="img-thumbnail">
-							</div>
-							<div class="comment-grid-right">
-								<div class="comment-listItem-text">
-									<h4>Username</h4>
-									<p>Description</p>
-									<p>date</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="profile-list">
-						<div class="comment-listItem">
-							<div class="comment-grid-left" style="margin-top: 30px">
-								<img src="images/pc2.jpg" class="img-thumbnail">
-							</div>
-							<div class="comment-grid-right">
-								<div class="comment-listItem-text">
-									<h4>Username</h4>
-									<p>Description</p>
-									<p>date</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					
 				</div>
 			</div>
 		</div>

@@ -9,6 +9,7 @@
 			
 			applicationFactory.getApplication(param).then(function(item) {
 				$scope.application = item;
+				$scope.events = item.events;
 			});
 			$scope.getEvent = function(event){
 				$location.path('/event/' + event._id);

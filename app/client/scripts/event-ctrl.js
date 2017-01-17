@@ -7,11 +7,11 @@
 
 			var param = $routeParams.param;
 			
-			eventFactory.getEvents().then(function(items) {
-				$scope.events = items;
-			});
 			eventFactory.getEvent(param).then(function(item) {
 				$scope.event = item;
+			});
+			eventFactory.getComments(param).then(function(items) {
+				$scope.comments = items;
 			});
 		}])
 })(angular);
