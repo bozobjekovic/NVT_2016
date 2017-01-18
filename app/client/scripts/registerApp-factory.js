@@ -7,9 +7,9 @@ angular.module('nvtClientApp')
 
             retVal.submitRegisterApp = function(appCreate) {
                 if (appCreate.name && appCreate.description && appCreate.domain) {
-                    return Restangular.all('api/applications/creator/', id).post(appCreate)
-                        .then(function(data) {
-                            $location.path('/');
+                    return Restangular.all('api/applications/creator/587559d3b586987127acff74')
+                    .post(appCreate).then(function(data) {
+                    	$location.path('/');
                         })
                 } else {
                     $window.alert('Fill required filleds!');
@@ -17,5 +17,4 @@ angular.module('nvtClientApp')
             };
 
             return retVal;
-        }
-    ]);
+        }]);

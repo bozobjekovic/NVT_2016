@@ -2,8 +2,8 @@
 	'use strict';
 
 	angular.module('nvtClientApp')
-        .controller('registerAppCtrl', ['$scope', '_', 'registerAppFactory',
-            function($scope, _, registerAppFactory) {
+        .controller('registerAppCtrl', ['$scope', 'registerAppFactory',
+            function($scope, registerAppFactory) {
 
                 $scope.appCreate = {
                     name: '',
@@ -14,8 +14,10 @@
                 };
 
                 $scope.submitAppForm = function() {
-                	registerAppFactory.submitRegisterApp($scope.appCreate);
-                };
+                	registerAppFactory.submitRegisterApp($scope.appCreate).then(function(app) {
+                		$scope.appCreate = app;
+                	});
+                }
             }
         ]);
 
