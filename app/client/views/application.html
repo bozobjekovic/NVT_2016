@@ -41,25 +41,20 @@
 			<div class="feature-top" style="margin-top: 5%; margin-bottom: -3%">
 				<h3>Events</h3>
 			</div>
-		  	<div class="table-responsive" ng-controller="eventCtrl" style="margin-left: 20%; margin-right: 20%; border: 1px solid gray; border-radius: 15px; padding: 10px;">          
+		  	<div class="table-responsive" ng-controller="eventCtrl" style="margin-left: 20%; margin-right: 20%; border: 1px solid gray; border-radius: 15px; padding: 10px;">
+		  		<div style="margin-left: 40%">
+					<form>
+						<label class="radio-inline"><input type="radio" name="optradio">All</label>
+						<label class="radio-inline"><input type="radio" name="optradio">Fragment</label>
+					</form>
+				</div>      
 				<div class="comment-list-scroll">
-					<div class="profile-list">
-						<div class="comment-listItem" ng-repeat="event in events">
-							<a href ng-click="getEvent(event)">
-								<div class="comment-grid-left" style="margin-top: 30px">
-									<img src="images/pc.jpg" class="img-thumbnail">
-								</div>
-							</a>
-							<div class="comment-grid-right">
-								<div class="comment-listItem-text">
-									<a href ng-click="getEvent(event)">
-										<h4>{{event.text}}</h4>
-									</a>
-									<p><b>Fragment:</b> {{event.fragment}}</p>
-									<p><b>Stack:</b> {{event.stack}}</p>
-								</div>
-							</div>
-						</div>
+					<div class="profile-list" ng-repeat="event in events" style="border: 1px solid gray; border-radius: 15px; padding: 10px;">
+						<a href ng-click="getEvent(event)">
+							<h4>{{event.text}}</h4>
+						</a>
+						<p><b>Fragment:</b> {{event.fragment}}</p>
+						<p><b>Stack:</b> {{event.stack}}</p>
 					</div>
 				</div>
 			</div>
