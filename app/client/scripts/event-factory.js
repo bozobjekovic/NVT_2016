@@ -16,7 +16,6 @@ angular.module('nvtClientApp')
 			return Restangular.one("api/comments/event/", id).get().then(function(item) {
 				if(item != null) {
 					comments = item.comments;
-					console.log(comments);
 				}
 				return comments;
     		});

@@ -51,81 +51,24 @@
 					</form>
 					<div class="clearfix"></div> <br>
 					
-					<div class="profile-list">
-						<div class="comment-listItem">
-							<div class="comment-grid-left" style="margin-top: 30px">
-								<img src="images/pc.jpg" class="img-thumbnail">
-							</div>
-							<div class="comment-grid-right">
-								<div class="comment-listItem-text">
-									<h4>comment.user.username</h4>
-									<p>comment.text</p>
-									<p>comment.createdAt</p>
-									<p>
-			       						<a ng-click="commCollapsed=!commCollapsed" href>
-											Comment...
-										</a>
-										<div ng-show="commCollapsed">
-											<form><br>
-												<div>
-													<textarea class="form-control" rows="4" id="comment" style="resize: none;" placeholder="Leave a Comment..." required=""></textarea>
-													<input type="submit" class="btn btn-success" value="Submit" style="margin-top:3px; float:right; width: 25%">
-												</div>
-											</form><br>
+					<div class="profile-list" ng-repeat="comment in comments">
+						<div class="comment-listItem" style="border: 1px solid gray; border-radius: 15px; padding: 10px;">
+							<h4>User id: {{comment.user}}</h4>
+							<p>{{comment.text}}</p>
+							<p>{{comment.createdAt}}</p>
+							<p>
+	       						<a ng-click="commCollapsed=!commCollapsed" href>
+									Comment...
+								</a>
+								<div ng-show="commCollapsed">
+									<form><br>
+										<div>
+											<textarea class="form-control" rows="4" id="comment" style="resize: none;" placeholder="Leave a Comment..." required=""></textarea>
+											<input type="submit" class="btn btn-success" value="Submit" style="margin-top:3px; float:right; width: 25%">
 										</div>
-									</p>
+									</form><br>
 								</div>
-							</div>
-						</div>
-						<div class="comment-listItem">
-							<div class="comment-grid-left" style="margin-top: 30px">
-								<img src="images/pc.jpg" class="img-thumbnail">
-							</div>
-							<div class="comment-grid-right">
-								<div class="comment-listItem-text">
-									<h4>comment.user.username</h4>
-									<p>comment.text</p>
-									<p>comment.createdAt</p>
-									<p>
-			       						<a ng-click="commCollapsed2=!commCollapsed2" href>
-											Comment...
-										</a>
-										<div ng-show="commCollapsed2">
-											<form><br>
-												<div>
-													<textarea class="form-control" rows="4" id="comment" style="resize: none;" placeholder="Leave a Comment..." required=""></textarea>
-													<input type="submit" class="btn btn-success" value="Submit" style="margin-top:3px; float:right; width: 25%">
-												</div>
-											</form>
-										</div>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="comment-listItem">
-							<div class="comment-grid-left" style="margin-top: 30px">
-								<img src="images/pc.jpg" class="img-thumbnail">
-							</div>
-							<div class="comment-grid-right">
-								<div class="comment-listItem-text">
-									<h4>comment.user.username</h4>
-									<p>comment.text</p>
-									<p>comment.createdAt</p>
-									<p>
-			       						<a ng-click="commCollapsed3=!commCollapsed3" href>
-											Comment...
-										</a>
-										<div ng-show="commCollapsed3">
-											<form><br>
-												<div>
-													<textarea class="form-control" rows="4" id="comment" style="resize: none;" placeholder="Leave a Comment..." required=""></textarea>
-													<input type="submit" class="btn btn-success" value="Submit" style="margin-top:3px; float:right; width: 25%">
-												</div>
-											</form>
-										</div>
-									</p>
-								</div>
-							</div>
+							</p>
 						</div>
 					</div>
 				</div>

@@ -2888,7 +2888,7 @@ td.add-check a {
 }
 .comment-listItem {
 	width: 100%;
-	height: 8em;
+	height: auto;
 	vertical-align : middle;
 }
 .comment-listItem-text {
