@@ -22,5 +22,23 @@ angular.module('nvtClientApp')
     		});
 		};
 
+        retVal.submitComment = function(commCreate) {
+            if (commCreate.text) {
+                return Restangular.all('api/comments/').post(commCreate).then(function(data) {
+                    })
+            } else {
+                $window.alert('Fill required filleds!');
+            }
+        };
+
+        retVal.submitCommentOnComment = function(commOnCommCreate, id) {
+            if (commOnCommCreate.text) {
+                return Restangular.all('api/comments/comment/', id).post(commOnCommCreate).then(function(data) {
+                    })
+            } else {
+                $window.alert('Fill required filleds!');
+            }
+        };
+
         return retVal;
     }]);
