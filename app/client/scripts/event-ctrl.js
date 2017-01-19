@@ -31,7 +31,7 @@
             }
 
             $scope.submitCommentOnComment = function() {
-            	eventFactory.submitCommentOnComment($scope.commOnCommCreate).then(function(comm, param) {
+            	eventFactory.submitCommentOnComment($scope.commOnCommCreate).then(function(comm) {
             		$scope.commOnCommCreate = comm;
                 	$location.path('/event/' + param);
             	});

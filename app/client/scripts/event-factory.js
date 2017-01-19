@@ -1,5 +1,5 @@
 angular.module('nvtClientApp')
-    .factory('eventFactory', ['Restangular', function(Restangular) {
+    .factory('eventFactory', ['Restangular', '$window', function(Restangular, $window) {
         'use strict';
 
         var retVal = {};
@@ -30,9 +30,9 @@ angular.module('nvtClientApp')
             }
         };
 
-        retVal.submitCommentOnComment = function(commOnCommCreate, id) {
+        retVal.submitCommentOnComment = function(commOnCommCreate) {
             if (commOnCommCreate.text) {
-                return Restangular.all('api/comments/comment/', id).post(commOnCommCreate).then(function(data) {
+                return Restangular.all('api/comments/comment/587eb5bab21165840e2e331a').post(commOnCommCreate).then(function(data) {
                     })
             } else {
                 $window.alert('Fill required filleds!');
