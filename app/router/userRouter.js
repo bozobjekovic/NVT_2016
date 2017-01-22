@@ -112,7 +112,8 @@ function getAllEventsForUser(id, res, callback) {
                 events.push(value.events);
                 itemsProcessed++;
                 if (itemsProcessed === user_.followedApps.length) {
-                    callback(res, events);
+                	var merged = [].concat.apply([], events);
+                    callback(res, merged);
                 }                      
             });
         }

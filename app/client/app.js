@@ -6,6 +6,7 @@
         'ngResource',
         'ngRoute',
         'restangular',
+        'angular.filter',
         'lodash'
     ])
     .config(function($routeProvider) {
