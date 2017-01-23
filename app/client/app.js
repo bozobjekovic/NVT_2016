@@ -7,7 +7,8 @@
         'ngRoute',
         'restangular',
         'angular.filter',
-        'lodash'
+        'lodash',
+        'ngStorage'
     ])
     .config(function($routeProvider) {
         $routeProvider

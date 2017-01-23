@@ -2,8 +2,8 @@
 	'use strict';
 	
 	angular.module('nvtClientApp')
-		.controller('applicationCtrl', ['$scope', '$routeParams', '$location', 'applicationFactory',
-		    function($scope, $routeParams, $location, applicationFactory) {
+		.controller('applicationCtrl', ['$scope', '$routeParams', '$location', '$localStorage', 'applicationFactory',
+		    function($scope, $routeParams, $location, $localStorage, applicationFactory) {
 
 			var param = $routeParams.param;
 			$scope.filter = {};

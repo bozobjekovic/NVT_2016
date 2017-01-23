@@ -12,5 +12,11 @@ angular.module('nvtClientApp')
     		});
 		};
 
+		retVal.login = function(userDTO) {
+			return Restangular.all("api/users/login").customPOST(userDTO).then(function(entry) {
+				return entry;
+    		});
+		};
+
         return retVal;
     }]);

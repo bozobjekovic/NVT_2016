@@ -15,6 +15,7 @@
     "restangular": "^1.6.1",
     "bootstrap-sass": "bootstrap-sass-official#^3.3.7",
     "angular-lodash-module": "^1.2.0",
-    "angular-filter": "^0.5.14"
+    "angular-filter": "^0.5.14",
+    "ngstorage": "^0.3.11"
   }
 }

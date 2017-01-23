@@ -23,6 +23,18 @@ userRouter
             if (err) next(err);
             res.json(user_);
         });
+    }) // Login
+    .post('/login', function(req, res, next) {
+        var u = req.body;
+        User.findOne({
+            "email": u.email ,
+            "password": u.password
+        }).populate('registratedApps')
+          .populate('followedApps')
+          .exec(function(err, user_) {
+            if (err) next(err);
+            res.json(user_);
+        });
     }) // Listing all events for user with user id
     .get('/:id/events', function(req, res, next) {
         getAllEventsForUser(req.params.id, res, returnEvents)
