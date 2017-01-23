@@ -2,18 +2,20 @@
 	'use strict';
 	
 	angular.module('nvtClientApp')
-		.controller('eventCtrl', ['$scope', '$routeParams', '$location', '$localStorage', 'eventFactory',
-		    function($scope, $routeParams, $location, $localStorage, eventFactory) {
+		.controller('eventCtrl', ['$scope', '$routeParams', '$location', '$localStorage', 'eventFactory', '$window',
+		    function($scope, $routeParams, $location, $localStorage, eventFactory, $window) {
 
 			var param = $routeParams.param;
 
             $scope.commCreate = {
                 text: '',
-                user: $localStorage.currentUser._id
+                user: $localStorage.currentUser._id,
+                event: param
             };
             $scope.commOnCommCreate = {
                     text: '',
-                    user: $localStorage.currentUser._id
+                    user: $localStorage.currentUser._id,
+                    event: param
                 };
 			
 			eventFactory.getEvent(param).then(function(item) {
@@ -27,6 +29,7 @@
             	eventFactory.submitComment($scope.commCreate).then(function(comm) {
             		$scope.commCreate = comm;
                 	$location.path('/event/' + param);
+                	$window.location.reload();
             	});
             }
 
@@ -34,6 +37,7 @@
             	eventFactory.submitCommentOnComment($scope.commOnCommCreate).then(function(comm) {
             		$scope.commOnCommCreate = comm;
                 	$location.path('/event/' + param);
+                	$window.location.reload();
             	});
             }
 		}])
