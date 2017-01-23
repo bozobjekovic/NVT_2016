@@ -44,7 +44,7 @@
 		  	<div class="table-responsive" style="margin-left: 20%; margin-right: 20%; border: 1px solid gray; border-radius: 15px; padding: 10px;">
 		  		<div>
 					<select class="form-control" ng-options="f.fragment for f in events | unique: fragment"
-					ng-model="filter" ng-change="optionClick()" style="margin-left: 14%; height: 3em; width: 35%; float: left;">
+					ng-model="filter[f.fragment]" ng-change="optionClick()" style="margin-left: 14%; height: 3em; width: 35%; float: left;">
 					</select>
 					<select class="form-control" style=" margin-right: 14%; height: 3em; width: 35%; float: right;">
 						<option>Ascending</option>

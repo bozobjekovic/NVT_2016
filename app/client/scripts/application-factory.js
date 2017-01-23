@@ -1,5 +1,6 @@
 angular.module('nvtClientApp')
-    .factory('applicationFactory', ['Restangular','$location', function(Restangular, $location) {
+    .factory('applicationFactory', ['Restangular','$location', '$window',
+                                    function(Restangular, $location, $window) {
         'use strict';
 
         var retVal = {};
@@ -14,18 +15,18 @@ angular.module('nvtClientApp')
     		});
 		};
 
-		retVal.getEvents = function(id) {
+		retVal.getEvents = function(userId, id) {
 			return Restangular
-			.one("api/users/587559d3b586987127acff74/events/app/", id)
+			.one("api/users/", userId).one("/events/app/", id)
 			.getList().then(function(items) {
 				events = items;
 				return events;
     		});
 		};
 
-		retVal.getEventsByFragment = function(id, frag) {
+		retVal.getEventsByFragment = function(userId, id, frag) {
 			return Restangular
-			.one("api/users/587559d3b586987127acff74/events/app/", id).one("/fragment/", frag)
+			.one("api/users/", userId).one("/events/app/", id).one("/fragment/", frag)
 			.getList().then(function(items) {
 				eventsByFragment = items;
 				return eventsByFragment;
@@ -34,7 +35,7 @@ angular.module('nvtClientApp')
 
         retVal.inviteUser = function(user, id) {
             if (user.email) {
-                return Restangular.one('api/applications/', id).one('/addUser/5877d9eac9b7301ef0825cff')
+                return Restangular.one('api/applications/', id).one('/addUser/', user.email)
                 .put(user).then(function(data) {
                 	$location.path('/application/'+id);
                     })

@@ -3,14 +3,6 @@ angular.module('nvtClientApp')
         'use strict';
 
         var retVal = {};
-		var applications = [];
-
-		retVal.getApplications = function() {
-			return Restangular.all("api/applications/").getList().then(function(entries) {
-				applications = entries;
-				return applications;
-    		});
-		};
 
 		retVal.login = function(userDTO) {
 			return Restangular.all("api/users/login").customPOST(userDTO).then(function(entry) {

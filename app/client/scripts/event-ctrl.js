@@ -2,18 +2,18 @@
 	'use strict';
 	
 	angular.module('nvtClientApp')
-		.controller('eventCtrl', ['$scope', '$routeParams', '$location', 'eventFactory',
-		    function($scope, $routeParams, $location, eventFactory) {
+		.controller('eventCtrl', ['$scope', '$routeParams', '$location', '$localStorage', 'eventFactory',
+		    function($scope, $routeParams, $location, $localStorage, eventFactory) {
 
 			var param = $routeParams.param;
 
             $scope.commCreate = {
                 text: '',
-                user: '587559d3b586987127acff74'
+                user: $localStorage.currentUser._id
             };
             $scope.commOnCommCreate = {
                     text: '',
-                    user: '587559d3b586987127acff74'
+                    user: $localStorage.currentUser._id
                 };
 			
 			eventFactory.getEvent(param).then(function(item) {

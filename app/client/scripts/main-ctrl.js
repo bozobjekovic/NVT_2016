@@ -14,14 +14,14 @@
 				$location.path('/application/' + application._id);
 			}
 
-			mainFactory.getApplications().then(function(items) {
-				$scope.applications = items;
-			});
+			if($localStorage.currentUser != null)
+				$scope.applications = $localStorage.currentUser.followedApps;
 
 			$scope.login = function(){
 				mainFactory.login($scope.userDTO).then(function(item) {
 					if(item != null){
 						$localStorage.currentUser = item;
+						$location.path('/');
 					}
 					else{
 						console.log('wrong');
