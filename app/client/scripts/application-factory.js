@@ -23,9 +23,9 @@ angular.module('nvtClientApp')
     		});
 		};
 
-		retVal.getEventsByFragment = function(id) {
+		retVal.getEventsByFragment = function(id, frag) {
 			return Restangular
-			.one("api/users/587559d3b586987127acff74/events/app/", id).one("/fragment/Backend")
+			.one("api/users/587559d3b586987127acff74/events/app/", id).one("/fragment/", frag)
 			.getList().then(function(items) {
 				eventsByFragment = items;
 				return eventsByFragment;

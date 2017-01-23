@@ -19,7 +19,9 @@
             }
 			
 			$scope.optionClick = function(){
-				
+				applicationFactory.getEventsByFragment(param, $scope.filter.fragment).then(function(items) {
+					$scope.events = items;
+				});				
 			}
 			
 			applicationFactory.getApplication(param).then(function(item) {
@@ -30,9 +32,6 @@
 			}
 			applicationFactory.getEvents(param).then(function(items) {
 				$scope.events = items;
-			});
-			applicationFactory.getEventsByFragment(param).then(function(items) {
-				$scope.eventsByFragment = items;
 			});
 		}])
 })(angular);

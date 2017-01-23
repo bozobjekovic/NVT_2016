@@ -42,11 +42,16 @@
 				<h3>Events</h3>
 			</div>
 		  	<div class="table-responsive" style="margin-left: 20%; margin-right: 20%; border: 1px solid gray; border-radius: 15px; padding: 10px;">
-		  		<div style="margin-left: 20%; margin-right: 20%">
+		  		<div>
 					<select class="form-control" ng-options="f.fragment for f in events | unique: fragment"
-					ng-model="filter" ng-change="optionClick()" style="height: 3em">
+					ng-model="filter" ng-change="optionClick()" style="margin-left: 14%; height: 3em; width: 35%; float: left;">
 					</select>
-				</div>      
+					<select class="form-control" style=" margin-right: 14%; height: 3em; width: 35%; float: right;">
+						<option>Ascending</option>
+						<option>Descending</option>
+					</select>
+				</div>
+				<div class="clearfix"></div>
 				<div class="comment-list-scroll">
 					<div class="profile-list" ng-repeat="event in events" style="border: 1px solid gray; border-radius: 15px; padding: 10px;">
 						<a href ng-click="getEvent(event)">
@@ -66,7 +71,6 @@
 				<div class="form-group">
 					<form>
 						<input type="email" class="form-control" id="inputEmail3" placeholder="Email" required ng-model="user.email"> <br>
-						<!-- <textarea class="form-control" rows="4" id="comment" style="resize: none;" placeholder="Write an Invitation Text..."></textarea> <br> -->
     					<button type="submit" class="btn btn-warning"style="width: 100%;" ng-click="inviteUser()">
     						<b>Invite</b>
     					</button>
