@@ -39,7 +39,7 @@
           controller: 'eventCtrl'
 		})
         .otherwise({
-          redirectTo:'/'
+          redirectTo:'/about'
         });
      })
 })(angular);

@@ -33,7 +33,7 @@
             $scope.logOut = function(event) {
                 $localStorage.$reset();
                 $rootScope.currentUser = false;
-                $location.path('/');
+                $location.path('/about');
             };
 		}])
 })(angular);
