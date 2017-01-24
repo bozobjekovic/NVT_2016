@@ -46,20 +46,22 @@
 					<select class="form-control" ng-options="f.fragment for f in events | unique: fragment"
 					ng-model="filter[f.fragment]" ng-change="optionClick()" style="margin-left: 14%; height: 3em; width: 35%; float: left;">
 					</select>
-					<select class="form-control" style=" margin-right: 14%; height: 3em; width: 35%; float: right;">
-						<option>Ascending</option>
-						<option>Descending</option>
+					<select class="form-control" ng-model="sortOrder"
+						style="margin-right: 14%; height: 3em; width: 35%; float: right;">
+						<option value="timeStamp">Ascending</option>
+						<option value="-timeStamp">Descending</option>
 					</select>
 				</div>
 				<div class="clearfix"></div>
 				<div class="comment-list-scroll">
-					<div class="profile-list" ng-repeat="event in events"
+					<div class="profile-list" ng-repeat="event in events | orderBy: sortOrder"
 					style="border: 1px solid orange; border-radius: 15px; padding: 15px; margin-top: 5px;">
 						<a href ng-click="getEvent(event)">
 							<h4>{{event.text}}</h4>
 						</a>
 						<p><b>Fragment:</b> {{event.fragment}}</p>
 						<p><b>Stack:</b> {{event.stack}}</p>
+						<p><b>Created at:</b> {{event.timeStamp}}</p>
 					</div>
 				</div>
 			</div>

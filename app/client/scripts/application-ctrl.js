@@ -7,6 +7,7 @@
 
 			var param = $routeParams.param;
 			$scope.filter = [];
+			$scope.sortOrder = 'timeStamp';
 
             $scope.user = {
                 email: ''
