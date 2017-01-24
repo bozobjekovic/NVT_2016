@@ -56,7 +56,7 @@
 						<p>User id: {{comment.user}}</p>
 						<p>{{comment.createdAt}}</p>
 						<p>
-       						<a ng-click="commCollapsed=!commCollapsed;" href>
+       						<a ng-click="commCollapsed=!commCollapsed; getCommentsOnComment(comment._id)" href>
 								Show more...
 							</a>
 							<div ng-show="commCollapsed">
