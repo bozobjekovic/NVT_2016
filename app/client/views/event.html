@@ -4,7 +4,7 @@
 			<div class="feature-top" style="margin-top: -5%; margin-bottom: -2%">
 				<h3>Event Data</h3>
 			</div>
-		  	<div class="table-responsive" style="margin-left: 20%; margin-right: 20%; border: 1px solid gray; border-radius: 15px; padding: 10px;">          
+		  	<div class="table-responsive" style="margin-left: 20%; margin-right: 20%; border: 2px solid gray; border-radius: 15px; padding: 10px;">          
 				<table class="table">
 			    	<tbody>
 			      		<tr>
@@ -40,7 +40,7 @@
 			<div class="feature-top" style="margin-top: 5%; margin-bottom: -3%">
 				<h3>Comments</h3>
 			</div>
-		  	<div class="table-responsive" style="margin-left: 20%; margin-right: 20%; border: 1px solid gray; border-radius: 15px; padding: 10px;">          
+		  	<div class="table-responsive" style="margin-left: 20%; margin-right: 20%; border: 2px solid gray; border-radius: 15px; padding: 10px;">          
 				<div class="comment-list-scroll">
 					<br>
 					<form>
@@ -51,21 +51,26 @@
 					</form>
 					<div class="clearfix"></div> <br>
 					
-					<div class="profile-list" ng-repeat="comment in comments" style="border: 1px solid gray; border-radius: 15px; padding: 10px;">
+					<div class="profile-list" ng-repeat="comment in comments" style="border: 2px solid orange; border-radius: 15px; padding: 15px; margin-top: 5px;">
 						<h4>{{comment.text}}</h4>
 						<p>User id: {{comment.user}}</p>
 						<p>{{comment.createdAt}}</p>
 						<p>
-       						<a ng-click="commCollapsed=!commCollapsed" href>
-								Comment...
+       						<a ng-click="commCollapsed=!commCollapsed;" href>
+								Show more...
 							</a>
 							<div ng-show="commCollapsed">
 								<form><br>
 									<div>
 										<textarea class="form-control" rows="4" id="comment" style="resize: none;" placeholder="Leave a Comment..." required ng-model="commOnCommCreate.text"></textarea>
-										<input type="submit" class="btn btn-success" value="Submit" ng-click="submitCommentOnComment()" style="margin-top:3px; float:right; width: 25%">
+										<input type="submit" class="btn btn-success" value="Submit" ng-click="submitCommentOnComment(comment._id)" style="margin-top:3px; float:right; width: 25%">
 									</div>
-								</form><br>
+								</form><br><br>
+								<div class="profile-list" ng-repeat="c in commentsFromComment" style="border: 1px solid green; border-radius: 5px; padding: 15px; margin: 5px 25px 0px 25px;">
+									<h4>{{c.text}}</h4>
+									<p>User id: {{c.user}}</p>
+									<p>{{c.createdAt}}</p>
+								</div><br><br>
 							</div>
 						</p>
 					</div>
