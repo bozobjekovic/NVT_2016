@@ -2,8 +2,8 @@
 	'use strict';
 	
 	angular.module('nvtClientApp')
-		.controller('mainCtrl', ['$scope', '$location', '$localStorage', 'mainFactory',
-		    function($scope, $location, $localStorage, mainFactory) {
+		.controller('mainCtrl', ['$scope', '$location', '$localStorage', '$rootScope', 'mainFactory',
+		    function($scope, $location, $localStorage, $rootScope, mainFactory) {
 
 			$scope.userDTO = {
 				email : '',
@@ -20,6 +20,7 @@
 			$scope.login = function(){
 				mainFactory.login($scope.userDTO).then(function(item) {
 					if(item != null){
+		                $rootScope.currentUser = true;
 						$localStorage.currentUser = item;
 						$location.path('/');
 					}
@@ -28,5 +29,11 @@
 					}
 				});
 			}
+
+            $scope.logOut = function(event) {
+                $localStorage.$reset();
+                $rootScope.currentUser = false;
+                $location.path('/');
+            };
 		}])
 })(angular);
