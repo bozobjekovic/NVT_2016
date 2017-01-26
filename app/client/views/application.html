@@ -44,17 +44,22 @@
 		  	<div class="table-responsive" style="margin-left: 20%; margin-right: 20%; border: 2px solid gray; border-radius: 15px; padding: 15px;">
 		  		<div>
 					<select class="form-control" ng-options="f.fragment for f in events | unique: fragment"
-					ng-model="filter[f.fragment]" ng-change="optionClick()" style="margin-left: 14%; height: 3em; width: 35%; float: left;">
+					ng-model="filter[f.fragment]" ng-change="optionClick()" style="margin-left: 5%; height: 3em; width: 30%; float: left;">
 					</select>
-					<select class="form-control" ng-model="sortOrder"
-						style="margin-right: 14%; height: 3em; width: 35%; float: right;">
-						<option value="timeStamp">Ascending</option>
-						<option value="-timeStamp">Descending</option>
+					<select class="form-control" ng-model="sortByTime"
+						style="height: 3em; width: 30%; float: left;">
+						<option value="timeStamp">Date Ascending</option>
+						<option value="-timeStamp">Date Descending</option>
+					</select>
+					<select class="form-control" ng-model="sortByVersion"
+						style="margin-right: 5%; height: 3em; width: 30%; float: right;">
+						<option value="version">Version Ascending</option>
+						<option value="-version">Version Descending</option>
 					</select>
 				</div>
 				<div class="clearfix"></div>
 				<div class="comment-list-scroll">
-					<div class="profile-list" ng-repeat="event in events | orderBy: sortOrder"
+					<div class="profile-list" ng-repeat="event in events | orderBy: sortByVersion"
 					style="border: 1px solid orange; border-radius: 15px; padding: 15px; margin-top: 5px;">
 						<a href ng-click="getEvent(event)">
 							<h4>{{event.text}}</h4>
@@ -62,6 +67,7 @@
 						<p><b>Fragment:</b> {{event.fragment}}</p>
 						<p><b>Stack:</b> {{event.stack}}</p>
 						<p><b>Created at:</b> {{event.timeStamp}}</p>
+						<p><b>Version:</b> {{event.version}}</p>
 					</div>
 				</div>
 			</div>
