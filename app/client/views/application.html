@@ -1,92 +1,117 @@
+<style>
+	hr {
+		margin: 0px;
+		border-top: 1px solid #808080;
+	}
+</style>
 <div class="content w3layouts-agile">
 	<div class="feature">
-		<div class="container">
-			
-			<!-- Application Data -->
-			<div class="feature-top" style="margin-top: -5%; margin-bottom: -3%">
-				<h3>Application Data</h3>
-			</div>
-		  	<div class="table-responsive" style="margin-left: 20%; margin-right: 20%; border: 2px solid gray; border-radius: 15px; padding: 10px;">          
-				<table class="table">
-			    	<tbody>
-			      		<tr>
-			        		<td>Name</td>
-			        		<td><b>{{application.name}}</b></td>
-			      		</tr>
-			      		<tr>
-			        		<td>Description</td>
-			        		<td>{{application.description}}</td>
-			      		</tr>
-			      		<tr>
-			        		<td>Application Version</td>
-			        		<td>{{application.version}}</td>
-			      		</tr>
-			      		<tr>
-			        		<td>Repository Link</td>
-			        		<td>{{application.repositoryLink}}</td>
-			      		</tr>
-			      		<tr>
-			        		<td>Domain Source Name</td>
-			        		<td>{{application.domain}}</td>
-			      		</tr>
-			      		<tr>
-			        		<td>Creator</td>
-			        		<td>{{application.creator}}</td>
-			      		</tr>
-			  		</tbody>
-			  	</table>
-			</div>
-			
-			<!-- Event List -->
-			<div class="feature-top" style="margin-top: 5%; margin-bottom: -2%">
-				<h3>Events</h3>
-			</div>
-		  	<div class="table-responsive" style="margin-left: 20%; margin-right: 20%; border: 2px solid gray; border-radius: 15px; padding: 15px;">
-		  		<div>
-					<select class="form-control" ng-options="f.fragment for f in events | unique: fragment"
-					ng-model="filter[f.fragment]" ng-change="optionClick()" style="margin-left: 5%; height: 3em; width: 30%; float: left;">
-					</select>
-					<select class="form-control" ng-model="sortByTime"
-						style="height: 3em; width: 30%; float: left;">
-						<option value="timeStamp">Date Ascending</option>
-						<option value="-timeStamp">Date Descending</option>
-					</select>
-					<select class="form-control" ng-model="sortByVersion"
-						style="margin-right: 5%; height: 3em; width: 30%; float: right;">
-						<option value="version">Version Ascending</option>
-						<option value="-version">Version Descending</option>
-					</select>
+		<div class="container" style="display: flex;">
+
+			<div style="display: inline-block; margin-right: 40px;">
+				<!-- Application Data -->
+				<div class="feature-top" style="margin-top: -15px; text-align: left; font-size: 10px; padding-bottom: 3em;">
+					<h3>Application Data</h3>
 				</div>
-				<div class="clearfix"></div>
-				<div class="comment-list-scroll">
-					<div class="profile-list" ng-repeat="event in events | orderBy: sortByVersion"
-					style="border: 1px solid orange; border-radius: 15px; padding: 15px; margin-top: 5px;">
-						<a href ng-click="getEvent(event)">
-							<h4>{{event.text}}</h4>
-						</a>
-						<p><b>Fragment:</b> {{event.fragment}}</p>
-						<p><b>Stack:</b> {{event.stack}}</p>
-						<p><b>Created at:</b> {{event.timeStamp}}</p>
-						<p><b>Version:</b> {{event.version}}</p>
+				<div class="table-responsive" style="border: 2px solid gray; border-radius: 15px; padding: 10px;">          
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Name</td>
+								<td><b>{{application.name}}</b></td>
+							</tr>
+							<tr>
+								<td>Description</td>
+								<td>{{application.description}}</td>
+							</tr>
+							<tr>
+								<td>Application Version</td>
+								<td>{{application.version}}</td>
+							</tr>
+							<tr>
+								<td>Repository Link</td>
+								<td>{{application.repositoryLink}}</td>
+							</tr>
+							<tr>
+								<td>Domain Source Name</td>
+								<td>{{application.domain}}</td>
+							</tr>
+							<tr>
+								<td>Creator</td>
+								<td>{{application.creator}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Register User -->
+				<div class="feature-top" style="margin-top: 50px; text-align: left; font-size: 10px; padding-bottom: 3em;">
+					<h3>Invite User</h3>
+				</div>
+				<div class="table-responsive" style="border: 2px solid gray; border-radius: 15px; padding: 40px 50px 30px 50px;">          
+					<div class="form-group">
+						<form>
+							<input type="email" class="form-control" id="inputEmail3" placeholder="Email" required ng-model="user.email"> <br>
+							<button type="submit" class="btn btn-warning"style="width: 100%;" ng-click="inviteUser()">
+								<b>Invite</b>
+							</button>
+						</form>
 					</div>
 				</div>
 			</div>
-			
-			<!-- Register User -->
-			<div class="feature-top" style="margin-top: 5%; margin-bottom: -3%">
-				<h3>Invite User</h3>
-			</div>
-		  	<div class="table-responsive" style="margin-left: 20%; margin-right: 20%; border: 2px solid gray; border-radius: 15px; padding: 40px 50px 30px 50px;">          
-				<div class="form-group">
-					<form>
-						<input type="email" class="form-control" id="inputEmail3" placeholder="Email" required ng-model="user.email"> <br>
-    					<button type="submit" class="btn btn-warning"style="width: 100%;" ng-click="inviteUser()">
-    						<b>Invite</b>
-    					</button>
-					</form>
+			<div style="display: inline-block; width: 670px;">
+				<!-- Event List -->
+				<div class="feature-top" style="margin-top: -15px; text-align: left; font-size: 10px; padding-bottom: 3em;">
+					<h3>Events</h3>
+				</div>
+				<div class="table-responsive" style="border: 2px solid gray; border-radius: 15px; padding: 15px; height: 577px; overflow: hidden;">
+					<div style="height: 42px;">
+						<div>
+							<select class="form-control" ng-model="filter" ng-change="optionClick()" 
+								style="margin-left: 5%; height: 3em; width: 30%; float: left;">
+								<option ng-repeat="f in fragments | unique: f">{{f}}</option>
+							</select>
+							<select class="form-control" ng-model="sortByVersion"
+								style="margin-right: 5%; height: 3em; width: 30%; float: right;">
+								<option value="version">Version Ascending</option>
+								<option value="-version">Version Descending</option>
+							</select>
+						</div>
+					</div>
+					<div ng-if="!showMainType" style="overflow-x: auto; height: 485px; margin-top: 15px;">
+						<section id="cd-timeline" class="cd-container">
+							<div class="cd-timeline-block" ng-repeat="eventDate in timelineEvents"> 
+								<div class="cd-timeline-img cd-picture">
+								</div>
+
+								<div class="cd-timeline-content">
+									<h2>Title of section 1<span style="float: right">{{eventDate.events[0].timeStamp | date:'dd-MM-yyyy'}}</span></h2>
+									<div ng-repeat="event in eventDate.events">
+										<p>{{event.stack}}</p>
+										<span class="cd-date">{{event.timeStamp | date:'HH:mm'}}</span><br />
+										<hr>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+					<div ng-if="showMainType" style="overflow-x: auto; height: 485px; margin-top: 15px;">
+						<div class="clearfix"></div>
+						<div class="">
+							<div class="profile-list" ng-repeat="event in events | orderBy: sortByVersion"
+							style="border: 1px solid orange; border-radius: 15px; padding: 15px; margin-top: 5px;">
+								<a href ng-click="getEvent(event)">
+									<h4>{{event.text}}</h4>
+								</a>
+								<p><b>Fragment:</b> {{event.fragment}}</p>
+								<p><b>Stack:</b> {{event.stack}}</p>
+								<p><b>Created at:</b> {{event.timeStamp | date:'dd-MM-yyyy HH:mm'}}</p>
+								<p><b>Version:</b> {{event.version}}</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			
 		</div>
 	</div>
 </div>

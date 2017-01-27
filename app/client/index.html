@@ -1,6 +1,8 @@
 <html>
 	<head>
 		<title>Track it</title>
+		<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+		<link rel="stylesheet" href="css/style1.css"> <!-- Resource style -->
 		<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 	</head>
@@ -9,7 +11,7 @@
 		<div class="header head">
 			<div class="container">
 				<div class="header-menu">
-					<nav class="navbar navbar-default">
+					<nav class="navbar navbar-default" style="width: 100%;">
 						<div class="container-fluid" ng-controller="mainCtrl">
 							<!-- Brand and toggle get grouped for better mobile display -->
 							<div class="navbar-header">
@@ -24,11 +26,11 @@
 							<!-- Collect the nav links, forms, and other content for toggling -->
 							<div ng-if="!currentUser">
 								<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-									<ul class="nav navbar-nav">
+									<ul class="nav navbar-nav" style="width: 100%;">
 										<li class="active"><a href="#">Home</a></li>
 										<li><a ng-href="http://localhost:8080/app/#!/about">About</a></li>
-										<li style="margin-left: 300px;"><a ng-href="http://localhost:8080/app/#!/login">Log In</a></li>
-										<li><a ng-href="http://localhost:8080/app/#!/register">Register</a></li>
+										<li style="float: right"><a ng-href="http://localhost:8080/app/#!/login">Log In</a></li>
+										<li style="float: right"><a ng-href="http://localhost:8080/app/#!/register">Register</a></li>
 									</ul>
 								</div>
 							</div>
@@ -67,6 +69,7 @@
 		<script src="../bower_components/restangular/dist/restangular.js"></script>
 		<script src="../bower_components/angular-filter/dist/angular-filter.js"></script>
 		<script src="../bower_components/ngstorage/ngStorage.min.js"></script>
+		<script src="js/main.js"></script>
 		
 	    <script src="app.js"></script>
 	    
