@@ -29,6 +29,12 @@ angular.module('nvtClientApp')
     		});
 		};
 
+		retVal.getEventsByVersion = function(userId, appId, version){
+			return Restangular.one("api/users/", userId).one("/events/app", appId).one("/version", version).getList().then(function(items){
+				return items;
+			});
+		}
+
         retVal.inviteUser = function(user, id) {
             if (user.email) {
                 return Restangular.one('api/applications/', id).one('/addUser/', user.email).put(user);

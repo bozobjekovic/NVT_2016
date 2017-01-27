@@ -71,12 +71,11 @@
 						<div>
 							<select class="form-control" ng-model="filter" ng-change="optionClick()" 
 								style="margin-left: 5%; height: 3em; width: 30%; float: left;">
-								<option ng-repeat="f in fragments | unique: f">{{f}}</option>
+								<option ng-repeat="fragment in fragments | unique: fragment">{{fragment}}</option>
 							</select>
-							<select class="form-control"
+							<select class="form-control" ng-model="selectVersion" ng-change="versionFilter()"
 								style="margin-right: 5%; height: 3em; width: 30%; float: right;">
-								<option value="version">Version Ascending</option>
-								<option value="-version">Version Descending</option>
+								<option ng-repeat="version in versions | unique: version | orderBy: version">{{version}}</option>
 							</select>
 						</div>
 					</div>
@@ -87,10 +86,14 @@
 								</div>
 
 								<div class="cd-timeline-content">
-									<h2>Title of section 1<span style="float: right">{{eventDate.events[0].timeStamp | date:'dd-MM-yyyy'}}</span></h2>
-									<div ng-repeat="event in eventDate.events">
-										<p>{{event.stack}}</p>
-										<span class="cd-date">{{event.timeStamp | date:'HH:mm'}}</span><br />
+									<h2><span style="font-weight: bold;">{{eventDate.events[0].timeStamp | date:'dd-MM-yyyy'}}</span></h2>
+									<div ng-repeat="event in eventDate.events" style="margin-top: 5px;">
+										<a href ng-click="getEvent(event)">	
+											<h5 style="font-size: 14px;">{{event.stack}}</h5>
+										</a>
+										<b>Fragment:</b> {{event.fragment}}<br/>
+										<b>Time:</b><span style="font-size: 13px;"> {{event.timeStamp | date:'HH:mm'}}h</span><br/>
+										<b>Version:</b> {{event.version}}
 										<hr>
 									</div>
 								</div>
@@ -107,7 +110,7 @@
 									<h4>{{event.stack}}</h4>
 								</a>
 								<p><b>Fragment:</b> {{event.fragment}}</p>
-								<p><b>Time  stamp:</b> {{event.timeStamp | date:'dd-MM-yyyy HH:mm'}}</p>
+								<p><b>Time  stamp:</b> {{event.timeStamp | date:'dd-MM-yyyy HH:mm'}}h</p>
 								<p><b>Version:</b> {{event.version}}</p>
 							</div>
 						</div>

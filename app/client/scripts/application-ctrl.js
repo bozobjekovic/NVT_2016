@@ -7,7 +7,9 @@
 
 			var param = $routeParams.param;
 			$scope.filter = null;
+			//$scope.selectVersion = null;
 			$scope.fragments = [];
+			$scope.versions = [];
 			$scope.timelineEvents = [];
 			$scope.showMainType = true;
 			$scope.sortByTime = 'timeStamp';
@@ -42,9 +44,15 @@
 				$scope.events = items;
 
 				$scope.fragments.push('All');
+				$scope.versions.push('All versions');
+
 				$scope.filter = $scope.fragments[0];
+				$scope.selectVersion = $scope.versions[0];
+
+
 				for (var i = 0; i < items.length; i++) {
 					$scope.fragments.push(items[i].fragment);
+					$scope.versions.push(items[i].version);
 				}
 			});
 			
@@ -84,6 +92,18 @@
 								});
 							}
 						}
+					});
+				}
+			}
+
+			$scope.versionFilter = function() {
+				if ($scope.selectVersion === 'All versions') { 
+					applicationFactory.getEvents($localStorage.currentUser._id, param).then(function(items) {
+						$scope.events = items;
+					});
+				} else {
+					applicationFactory.getEventsByVersion($localStorage.currentUser._id, param, $scope.selectVersion).then(function(items) {
+						$scope.events = items;
 					});
 				}
 			}
