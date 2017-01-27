@@ -18,11 +18,8 @@ commentRouter
     })
     // get comments for chosen comment
     .get('/comment/:id', function(req, res) {
-        console.log('aaaa');
         Comment.findOne({ "_id": req.params.id }, function (err, comment_) {
             if (err) return next(err);
-            var doc = comment_.comments.id(comment_.comments[0]);
-            console.log(doc);
             res.json(comment_.comments);
         });
     })
@@ -40,14 +37,9 @@ commentRouter
     // post new comment on existing comment
     .post('/comment/:id', function(req, res, next) {
         var comment = new Comment(req.body);
-        comment.save(function(err, comment_) {
-            console.log(comment_);console.log('*******************');
-            console.log(comment);console.log('####################');
-            if (err) return next(err);
-            Comment.findByIdAndUpdate(req.params.id, {$push:{"comments":comment_._id}}, function (err, comment_){
-                if (err) next(err);
-                res.json(comment_);
-            });
+        Comment.findByIdAndUpdate(req.params.id, {$push:{"comments":comment}}, function (err, comment_) {
+            if (err) next(err);
+            res.json(comment_.comments);
         });
     })
 
