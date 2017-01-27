@@ -2,8 +2,8 @@
 	'use strict';
 	
 	angular.module('nvtClientApp')
-		.controller('applicationCtrl', ['$scope', '$routeParams', '$location', '$localStorage', 'applicationFactory',
-		    function($scope, $routeParams, $location, $localStorage, applicationFactory) {
+		.controller('applicationCtrl', ['$scope', '$routeParams', '$location', '$localStorage', 'applicationFactory', 'mainFactory',
+		    function($scope, $routeParams, $location, $localStorage, applicationFactory, mainFactory) {
 
 			var param = $routeParams.param;
 			$scope.filter = null;
@@ -12,13 +12,30 @@
 			$scope.showMainType = true;
 			$scope.sortByTime = 'timeStamp';
 			$scope.sortByVersion = 'version';
+			$scope.loaded = false;
 
-            $scope.user = {
-                email: ''
-            };
+			if($localStorage.currentUser != null){
+				$scope.user = $localStorage.currentUser;
+			}
+
+            $scope.userInvite = {		
+	            email: ''		
+	        };
 			
 			applicationFactory.getApplication(param).then(function(item) {
 				$scope.application = item;
+				mainFactory.getUser(item.creator).then(function(entry) {		
+					$scope.creator = entry;		
+				});		
+				for(var i = 0; i < $scope.user.registratedApps.length; i++) {		
+					if ($scope.user.registratedApps[i]._id == $scope.application._id) {		
+						$scope.loaded = true;		
+					}		
+				}
+			});
+
+			applicationFactory.getUsers().then(function(items) {
+				$scope.users = items;
 			});
 			
 			applicationFactory.getEvents($localStorage.currentUser._id, param).then(function(items) {
@@ -72,9 +89,7 @@
 			}
 
             $scope.inviteUser = function() {
-            	applicationFactory.inviteUser($scope.user, param).then(function(user) {
-                	$scope.user = user;
-				});
+            	applicationFactory.inviteUser($scope.userInvite, param);
             }
 			
 			$scope.getEvent = function(event){

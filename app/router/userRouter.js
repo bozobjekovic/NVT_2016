@@ -50,9 +50,23 @@ userRouter
     })// Adding new user
     .post('/', function(req, res, next) {
         var user = new User(req.body);
-        user.save(function(err, user_) {
-            if (err) next(err);
-            res.json(user_);
+        User.findOne({"email": user.email}).exec(function(err, user_){
+            if(user_){
+                return res.json({
+                    found: true,
+                    data: {}
+                });
+            }
+            else{
+                user.save(function(err, user_) {
+                    if (err) next(err);
+                        res.json({
+                            found: false,
+                            data: user_
+                        }
+                    );
+                });
+            }
         });
     });
 
@@ -75,6 +89,7 @@ function getAllEventsByFragment(idU, idA, fragment_, res, callback) {
         })
         .exec(function(err, apps_) {
             execute(err, apps_, res, {fragment: fragment_}, callback);
+
         });
  }
 
@@ -134,6 +149,6 @@ function getAllEventsForUser(id, res, callback) {
 
  function returnEvents(res, events) {
     res.json(events);
-}
+ }
 
 module.exports = userRouter;

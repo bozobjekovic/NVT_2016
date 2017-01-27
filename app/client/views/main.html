@@ -6,7 +6,7 @@
 			</div>
 			<br>
 		  	<div class="row">
-		    	<div class="col-md-4" ng-repeat="application in applications">
+		    	<div class="col-md-4" ng-repeat="application in user.followedApps">
 		      		<div class="thumbnail">
 						<a href ng-click="getApplication(application)">
 							<img src="images/pc.jpg" class="img-responsive" style="height: 25%; width: 100%">
@@ -14,8 +14,8 @@
 						<div class="caption">
 							<h5><a href ng-click="getApplication(application)">{{application.name}}</a></h5> <br>
 							<p>Description: {{application.description}}</p>
-							<p>Version: {{application.version}}</p>
 							<p>Repository Link: {{application.repositoryLink}}</p>
+							<p>Domain: {{application.domain}}</p>
 						</div>
 					</div>
 				</div>

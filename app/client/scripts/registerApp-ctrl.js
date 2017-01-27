@@ -14,9 +14,7 @@
                 };
 
                 $scope.submitAppForm = function() {
-                	registerAppFactory.submitRegisterApp($scope.appCreate, $localStorage.currentUser._id).then(function(app) {
-                		$scope.appCreate = app;
-                	});
+                	registerAppFactory.submitRegisterApp($scope.appCreate, $localStorage.currentUser._id);
                 }
             }
         ]);

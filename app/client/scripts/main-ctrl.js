@@ -5,6 +5,11 @@
 		.controller('mainCtrl', ['$scope', '$location', '$localStorage', '$rootScope', 'mainFactory',
 		    function($scope, $location, $localStorage, $rootScope, mainFactory) {
 
+			if($localStorage.currentUser != null){
+				$rootScope.currentUser = true;
+				$scope.user = $localStorage.currentUser;
+			}
+
 			$scope.userDTO = {
 				email : '',
 				password : ''
@@ -14,15 +19,12 @@
 				$location.path('/application/' + application._id);
 			}
 
-			if($localStorage.currentUser != null)
-				$scope.applications = $localStorage.currentUser.followedApps;
-
 			$scope.login = function(){
 				mainFactory.login($scope.userDTO).then(function(item) {
 					if(item != null){
 		                $rootScope.currentUser = true;
 						$localStorage.currentUser = item;
-						$location.path('/');
+						$location.path('/applications');
 					}
 					else{
 						console.log('wrong');

@@ -37,10 +37,15 @@ eventRouter
         Application.findOne({"_id":req.params.id},function (err, app_) {
             if (err) return next(err);
             event.application = app_;
-            event.version = app_.version;
             event.save(function(err, event_) {
                 if (err) return next(err);
-                Application.findByIdAndUpdate(app_._id, {$push:{"events":event_._id}}, function (err, app_){
+                if(event_.version > app_.version){
+                    var update = {$push:{"events":event_._id}, $set:{version : event_.version}};
+                }
+                else{
+                    var update = {$push:{"events":event_._id}};
+                }
+                Application.findByIdAndUpdate(app_._id, update, function (err, app_){
                     if (err) next(err);
                     var mailTo = "";
                     var itemsProcessed = 0;

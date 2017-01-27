@@ -24,16 +24,29 @@ applicationRouter
     }) // Creating new application, setting it's creator and adding it to users registrated apps
     .post('/creator/:id', function(req, res, next) {
         var application = new Application(req.body);
-        User.findOne({"_id":req.params.id},function (err, user_) {
-            if (err) return next(err);
-            application.creator = user_;
-            application.save(function(err, application) {
-                if (err) return next(err);
-                User.findByIdAndUpdate(user_._id, {$push:{"registratedApps":application._id, "followedApps":application._id}}, function (err, user_){
-                    if (err) next(err);
-                    res.json(application);
+        Application.findOne({"domain": application.domain}).exec(function(err, app_){
+            if(app_){
+                return res.json({
+                    found: true,
+                    data: {}
                 });
-            });
+            }
+            else{
+                User.findOne({"_id":req.params.id},function (err, user_) {
+                    if (err) return next(err);
+                    application.creator = user_;
+                    application.save(function(err, application) {
+                        if (err) return next(err);
+                        User.findByIdAndUpdate(user_._id, {$push:{"registratedApps":application._id, "followedApps":application._id}}, function (err, user_){
+                            if (err) next(err);
+                            return res.json({
+                                found: false,
+                                data: application
+                            });
+                        });
+                    });
+                });
+            }
         });
     }) // Adding access to user with idU, for appplication with id idA
     .put('/:idA/addUser/:email', function(req, res, next) {

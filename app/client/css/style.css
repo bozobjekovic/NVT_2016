@@ -101,19 +101,19 @@ h1,h2,h3,h4,h5,h6,label,p{
 }
 .dropdown-menu {
     border:none;
-    background-color: #ff6900;
+    background-color: white;
 	padding: 0px 0;
 	border-radius: 0px;
 }
 .dropdown-menu > li > a {
     padding: 6px 20px;
-    color: #FFF;
+    color: black;
     font-size: 1.2em;
 }
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
     color: #000;
     text-decoration: none;
-    background-color: #FFFFFF;
+    background-color: gray;
 }
 .number p{
 	font-size:1.7em;

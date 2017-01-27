@@ -45,17 +45,19 @@
 				</div>
 
 				<!-- Register User -->
-				<div class="feature-top" style="margin-top: 50px; text-align: left; font-size: 10px; padding-bottom: 3em;">
-					<h3>Invite User</h3>
-				</div>
-				<div class="table-responsive" style="border: 2px solid gray; border-radius: 15px; padding: 40px 50px 30px 50px;">          
-					<div class="form-group">
-						<form>
-							<input type="email" class="form-control" id="inputEmail3" placeholder="Email" required ng-model="user.email"> <br>
-							<button type="submit" class="btn btn-warning"style="width: 100%;" ng-click="inviteUser()">
-								<b>Invite</b>
-							</button>
-						</form>
+				<div ng-if="loaded">
+					<div class="feature-top" style="margin-top: 50px; text-align: left; font-size: 10px; padding-bottom: 3em;">
+						<h3>Invite User</h3>
+					</div>
+					<div class="table-responsive" style="border: 2px solid gray; border-radius: 15px; padding: 40px 50px 30px 50px;">          
+						<div class="form-group">
+							<form>
+								<input type="email" class="form-control" id="inputEmail3" placeholder="Email" required ng-model="userInvite.email" uib-typeahead="user.email for user in users | filter:$viewValue"> <br>
+								<button type="submit" class="btn btn-warning"style="width: 100%;" ng-click="inviteUser()">
+									<b>Invite</b>
+								</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -71,7 +73,7 @@
 								style="margin-left: 5%; height: 3em; width: 30%; float: left;">
 								<option ng-repeat="f in fragments | unique: f">{{f}}</option>
 							</select>
-							<select class="form-control" ng-model="sortByVersion"
+							<select class="form-control"
 								style="margin-right: 5%; height: 3em; width: 30%; float: right;">
 								<option value="version">Version Ascending</option>
 								<option value="-version">Version Descending</option>
@@ -95,17 +97,17 @@
 							</div>
 						</section>
 					</div>
+
 					<div ng-if="showMainType" style="overflow-x: auto; height: 485px; margin-top: 15px;">
 						<div class="clearfix"></div>
 						<div class="">
-							<div class="profile-list" ng-repeat="event in events | orderBy: sortByVersion"
+							<div class="profile-list" ng-repeat="event in events"
 							style="border: 1px solid orange; border-radius: 15px; padding: 15px; margin-top: 5px;">
-								<a href ng-click="getEvent(event)">
-									<h4>{{event.text}}</h4>
+								<a href ng-click="getEvent(event)">	
+									<h4>{{event.stack}}</h4>
 								</a>
 								<p><b>Fragment:</b> {{event.fragment}}</p>
-								<p><b>Stack:</b> {{event.stack}}</p>
-								<p><b>Created at:</b> {{event.timeStamp | date:'dd-MM-yyyy HH:mm'}}</p>
+								<p><b>Time  stamp:</b> {{event.timeStamp | date:'dd-MM-yyyy HH:mm'}}</p>
 								<p><b>Version:</b> {{event.version}}</p>
 							</div>
 						</div>

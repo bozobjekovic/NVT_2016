@@ -12,6 +12,7 @@
                 user: $localStorage.currentUser._id,
                 event: param
             };
+
             $scope.commOnCommCreate = {
                 text: '',
                 user: $localStorage.currentUser._id,
@@ -27,8 +28,7 @@
 			});
 
             $scope.submitComment = function() {
-            	eventFactory.submitComment($scope.commCreate).then(function(comm) {
-            	});
+            	eventFactory.submitComment($scope.commCreate);
             }
             
 			$scope.getCommentsOnComment = function(id) {

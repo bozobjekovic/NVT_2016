@@ -25,6 +25,15 @@ var evetnSchema = new Schema({
     }]
 });
 
+evetnSchema.pre('save', function(next) {
+    var currentDate = new Date();
+    
+    if (!this.timeStamp)
+        this.timeStamp = currentDate;
+
+    next();
+});
+
 var AppEvent = mongoose.model('AppEvent', evetnSchema);
 
 module.exports = AppEvent;

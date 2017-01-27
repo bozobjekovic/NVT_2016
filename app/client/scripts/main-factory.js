@@ -10,5 +10,11 @@ angular.module('nvtClientApp')
     		});
 		};
 
+        retVal.getUser = function(id) {
+			return Restangular.one("api/users/", id).get().then(function(entry) {
+				return entry;
+    		});
+		};
+
         return retVal;
     }]);
