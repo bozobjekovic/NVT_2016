@@ -3,16 +3,26 @@
 
   angular
     .module('nvtClientApp', [
-        'ngResource',
         'ngRoute',
         'restangular',
         'ui.bootstrap',
         'angular.filter',
         'lodash',
-        'ngStorage'
+        'ngStorage',
+		'main',
+		'application',
+		'event',
+		'registerApp',
+		'registerUser'
     ])
-    .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-        $locationProvider.hashPrefix('');
+    .config(configure)
+    .run(runBlock);
+
+    configure.$inject = ['$routeProvider', '$locationProvider'];
+	runBlock.$inject = ['Restangular', '$log'];
+
+    function configure($routeProvider, $locationProvider) {
+      	$locationProvider.hashPrefix('');
         $routeProvider
           .when('/',{
             templateUrl: 'views/login.html',
@@ -44,5 +54,16 @@
           .otherwise({
             redirectTo:'/'
           });
-    }])
+    }
+
+    function runBlock(Restangular, $log) {
+        Restangular.setErrorInterceptor(function(response) {
+            if (response.status === 500) {
+                $log.info("internal server error");
+                return true;
+            }
+            return true;
+        });
+    }
+
 })(angular);

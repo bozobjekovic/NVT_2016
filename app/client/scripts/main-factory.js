@@ -1,20 +1,24 @@
-angular.module('nvtClientApp')
-    .factory('mainFactory', ['Restangular', function(Restangular) {
-        'use strict';
+angular.module('main')
+    .factory('mainFactory', mainFactory);
 
-        var retVal = {};
+mainFactory.$inject = ['Restangular'];
+	
+function mainFactory(Restangular) {
+	'use strict';
 
-		retVal.login = function(userDTO) {
-			return Restangular.all("api/users/login").customPOST(userDTO).then(function(entry) {
-				return entry;
-    		});
-		};
+	var retVal = {};
 
-        retVal.getUser = function(id) {
-			return Restangular.one("api/users/", id).get().then(function(entry) {
-				return entry;
-    		});
-		};
+	retVal.login = function(userDTO) {
+		return Restangular.all("api/users/login").customPOST(userDTO).then(function(entry) {
+			return entry;
+		});
+	};
 
-        return retVal;
-    }]);
+	retVal.getUser = function(id) {
+		return Restangular.one("api/users/", id).get().then(function(entry) {
+			return entry;
+		});
+	};
+
+	return retVal;
+}

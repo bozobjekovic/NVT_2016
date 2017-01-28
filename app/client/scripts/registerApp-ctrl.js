@@ -1,22 +1,24 @@
 (function (angular) {
 	'use strict';
 
-	angular.module('nvtClientApp')
-        .controller('registerAppCtrl', ['$scope', 'registerAppFactory', '$localStorage',
-            function($scope, registerAppFactory, $localStorage) {
+	angular
+        .module('registerApp', [])
+        .controller('registerAppCtrl', registerAppController);
 
-                $scope.appCreate = {
-                    name: '',
-                    description: '',
-                    version: '',
-                    repositoryLink: '',
-                    domain: ''
-                };
+    registerAppController.$inject = ['$scope', 'registerAppFactory', '$localStorage'];
 
-                $scope.submitAppForm = function() {
-                	registerAppFactory.submitRegisterApp($scope.appCreate, $localStorage.currentUser._id);
-                }
-            }
-        ]);
+    function registerAppController($scope, registerAppFactory, $localStorage) {
+        $scope.appCreate = {
+            name: '',
+            description: '',
+            version: '',
+            repositoryLink: '',
+            domain: ''
+        };
+
+        $scope.submitAppForm = function() {
+            registerAppFactory.submitRegisterApp($scope.appCreate, $localStorage.currentUser._id);
+        }
+    }
 
 })(angular);

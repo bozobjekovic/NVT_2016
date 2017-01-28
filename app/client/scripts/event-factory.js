@@ -1,53 +1,57 @@
-angular.module('nvtClientApp')
-	.factory('eventFactory', ['Restangular', '_', '$window', function(Restangular, $window) {
-        'use strict';
+angular.module('event')
+	.factory('eventFactory', eventFactory);
 
-        var retVal = {};
-		var event = {};
-		var comments = [];
-		var commentsFromComment = [];
+eventFactory.$inject = ['Restangular', '$window'];
 
-		retVal.getEvent = function(id) {
-			return Restangular.one("api/events/", id).get().then(function(entry) {
-				event = entry;
-				return event;
-    		});
-		};
-		
-		retVal.getComments = function(id) {
-			return Restangular.one("api/comments/event/", id).get().then(function(item) {
-				if(item != null) {
-					comments = item.comments;
-				}
-				return comments;
-    		});
-		};
+function eventFactory(Restangular, $window) {
+	'use strict';
 
-        retVal.submitComment = function(commCreate) {
-            if (commCreate.text) {
-                return Restangular.all('api/comments/').post(commCreate).then(function(data) {
-					comments.unshift(data);
-                })
-            } else {
-                $window.alert('Fill required filleds!');
-            }
-        };
-		
-		retVal.getCommentsFromComment = function(id) {
-			return Restangular.one("api/comments/comment/", id).getList().then(function(items) {
-				return items;
-    		});
-		};
+	var retVal = {};
+	var event = {};
+	var comments = [];
+	var commentsFromComment = [];
 
-        retVal.submitCommentOnComment = function(id, commOnCommCreate) {
-            if (commOnCommCreate.text) {
-                return Restangular.one('api/comments/comment/', id).customPOST(commOnCommCreate).then(function(data) {
-					return data;
-                })
-            } else {
-                $window.alert('Fill required filleds!');
-            }
-        };
+	retVal.getEvent = function(id) {
+		return Restangular.one("api/events/", id).get().then(function(entry) {
+			event = entry;
+			return event;
+		});
+	};
+	
+	retVal.getComments = function(id) {
+		return Restangular.one("api/comments/event/", id).get().then(function(item) {
+			if(item != null) {
+				comments = item.comments;
+			}
+			return comments;
+		});
+	};
 
-        return retVal;
-    }]);
+	retVal.submitComment = function(commCreate) {
+		if (commCreate.text) {
+			return Restangular.all('api/comments/').post(commCreate).then(function(data) {
+				comments.unshift(data);
+			})
+		} else {
+			$window.alert('Fill required filleds!');
+		}
+	};
+	
+	retVal.getCommentsFromComment = function(id) {
+		return Restangular.one("api/comments/comment/", id).getList().then(function(items) {
+			return items;
+		});
+	};
+
+	retVal.submitCommentOnComment = function(id, commOnCommCreate) {
+		if (commOnCommCreate.text) {
+			return Restangular.one('api/comments/comment/', id).customPOST(commOnCommCreate).then(function(data) {
+				return data;
+			})
+		} else {
+			$window.alert('Fill required filleds!');
+		}
+	};
+
+	return retVal;
+}

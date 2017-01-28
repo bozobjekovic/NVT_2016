@@ -1,23 +1,25 @@
 (function (angular) {
 	'use strict';
 
-	angular.module('nvtClientApp')
-        .controller('registerUserCtrl', ['$scope', 'registerUserFactory',
-            function($scope, registerUserFactory) {
+	angular
+        .module('registerUser', [])
+        .controller('registerUserCtrl', registerUserController);
 
-                $scope.userCreate = {
-                    email: '',
-                    password: '',
-                    name: '',
-                    surName: ''
-                };
+    registerUserController.$inject = ['$scope', 'registerUserFactory'];
 
-                $scope.submitRegisterUser = function() {
-	                registerUserFactory.submitRegisterUser($scope.userCreate).then(function(user) {
-					      $scope.userCreate = user;
-					});
-                }
-            }
-        ]);
+    function registerUserController($scope, registerUserFactory) {
+        $scope.userCreate = {
+            email: '',
+            password: '',
+            name: '',
+            surName: ''
+        };
+
+        $scope.submitRegisterUser = function() {
+            registerUserFactory.submitRegisterUser($scope.userCreate).then(function(user) {
+                    $scope.userCreate = user;
+            });
+        }
+    }
 
 })(angular);

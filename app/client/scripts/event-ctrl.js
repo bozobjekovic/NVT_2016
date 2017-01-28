@@ -1,44 +1,48 @@
 (function (angular) {
 	'use strict';
 	
-	angular.module('nvtClientApp')
-		.controller('eventCtrl', ['$scope', '$routeParams', '$location', '$localStorage', 'eventFactory', '$window',
-		    function($scope, $routeParams, $location, $localStorage, eventFactory, $window) {
+	angular
+		.module('event', [])
+		.controller('eventCtrl', eventController);
 
-			var param = $routeParams.param;
+	eventController.$inject = ['$scope', '$routeParams', '$location', '$localStorage', 'eventFactory'];
 
-            $scope.commCreate = {
-                text: '',
-                user: $localStorage.currentUser._id,
-                event: param
-            };
+	function eventController($scope, $routeParams, $location, $localStorage, eventFactory) {
+		var param = $routeParams.param;
 
-            $scope.commOnCommCreate = {
-                text: '',
-                user: $localStorage.currentUser._id,
-                createdAt : new Date()
-            };
-			
-			eventFactory.getEvent(param).then(function(item) {
-				$scope.event = item;
+		$scope.commCreate = {
+			text: '',
+			user: $localStorage.currentUser._id,
+			event: param
+		};
+
+		$scope.commOnCommCreate = {
+			text: '',
+			user: $localStorage.currentUser._id,
+			createdAt : new Date()
+		};
+		
+		eventFactory.getEvent(param).then(function(item) {
+			$scope.event = item;
+		});
+		
+		eventFactory.getComments(param).then(function(items) {
+			$scope.comments = items;
+		});
+
+		$scope.submitComment = function() {
+			eventFactory.submitComment($scope.commCreate);
+		}
+		
+		$scope.getCommentsOnComment = function(id) {
+			eventFactory.getCommentsFromComment(id).then(function(items) {
+				$scope.commentsFromComment = items;
 			});
-			
-			eventFactory.getComments(param).then(function(items) {
-				$scope.comments = items;
-			});
+		}
 
-            $scope.submitComment = function() {
-            	eventFactory.submitComment($scope.commCreate);
-            }
-            
-			$scope.getCommentsOnComment = function(id) {
-				eventFactory.getCommentsFromComment(id).then(function(items) {
-					$scope.commentsFromComment = items;
-				});
-			}
+		$scope.submitCommentOnComment = function(id) {
+			eventFactory.submitCommentOnComment(id, $scope.commOnCommCreate);
+		}
+	}
 
-            $scope.submitCommentOnComment = function(id) {
-            	eventFactory.submitCommentOnComment(id, $scope.commOnCommCreate);
-            }
-		}])
 })(angular);

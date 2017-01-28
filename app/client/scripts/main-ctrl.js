@@ -1,41 +1,45 @@
 (function (angular) {
 	'use strict';
 	
-	angular.module('nvtClientApp')
-		.controller('mainCtrl', ['$scope', '$location', '$localStorage', '$rootScope', 'mainFactory',
-		    function($scope, $location, $localStorage, $rootScope, mainFactory) {
+	angular
+		.module('main', [])
+		.controller('mainCtrl', mainController);
 
-			if($localStorage.currentUser != null){
-				$rootScope.currentUser = true;
-				$scope.user = $localStorage.currentUser;
-			}
+	mainController.$inject = ['$scope', '$location', '$localStorage', '$rootScope', 'mainFactory'];
 
-			$scope.userDTO = {
-				email : '',
-				password : ''
-			}
-		
-			$scope.getApplication = function(application){
-				$location.path('/application/' + application._id);
-			}
+	function mainController($scope, $location, $localStorage, $rootScope, mainFactory) {
+		if($localStorage.currentUser != null){
+			$rootScope.currentUser = true;
+			$scope.user = $localStorage.currentUser;
+		}
 
-			$scope.login = function(){
-				mainFactory.login($scope.userDTO).then(function(item) {
-					if(item != null){
-		                $rootScope.currentUser = true;
-						$localStorage.currentUser = item;
-						$location.path('/applications');
-					}
-					else{
-						console.log('wrong');
-					}
-				});
-			}
+		$scope.userDTO = {
+			email : '',
+			password : ''
+		}
+	
+		$scope.getApplication = function(application){
+			$location.path('/application/' + application._id);
+		}
 
-            $scope.logOut = function(event) {
-                $localStorage.$reset();
-                $rootScope.currentUser = false;
-                $location.path('/about');
-            };
-		}])
+		$scope.login = function(){
+			mainFactory.login($scope.userDTO).then(function(item) {
+				if(item != null){
+					$rootScope.currentUser = true;
+					$localStorage.currentUser = item;
+					$location.path('/applications');
+				}
+				else{
+					console.log('wrong');
+				}
+			});
+		}
+
+		$scope.logOut = function(event) {
+			$localStorage.$reset();
+			$rootScope.currentUser = false;
+			$location.path('/about');
+		};
+	}
+
 })(angular);
