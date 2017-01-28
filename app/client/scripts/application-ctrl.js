@@ -7,7 +7,7 @@
 
 			var param = $routeParams.param;
 			$scope.filter = null;
-			//$scope.selectVersion = null;
+			$scope.selectVersion = null;
 			$scope.fragments = [];
 			$scope.versions = [];
 			$scope.timelineEvents = [];

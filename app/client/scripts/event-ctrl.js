@@ -16,7 +16,7 @@
             $scope.commOnCommCreate = {
                 text: '',
                 user: $localStorage.currentUser._id,
-                event: param
+                createdAt : new Date()
             };
 			
 			eventFactory.getEvent(param).then(function(item) {
@@ -38,10 +38,7 @@
 			}
 
             $scope.submitCommentOnComment = function(id) {
-            	eventFactory.submitCommentOnComment(id, $scope.commOnCommCreate).then(function(comm) {
-                	$location.path('/event/' + param);
-                	$window.location.reload();
-            	});
+            	eventFactory.submitCommentOnComment(id, $scope.commOnCommCreate);
             }
 		}])
 })(angular);

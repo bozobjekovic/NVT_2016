@@ -35,18 +35,15 @@ angular.module('nvtClientApp')
 		
 		retVal.getCommentsFromComment = function(id) {
 			return Restangular.one("api/comments/comment/", id).getList().then(function(items) {
-				if(items != null) {
-					commentsFromComment = items.comments;
-				}
-				return commentsFromComment;
+				return items;
     		});
 		};
 
         retVal.submitCommentOnComment = function(id, commOnCommCreate) {
             if (commOnCommCreate.text) {
-            	console.log(commOnCommCreate);
                 return Restangular.one('api/comments/comment/', id).customPOST(commOnCommCreate).then(function(data) {
-                    })
+					return data;
+                })
             } else {
                 $window.alert('Fill required filleds!');
             }

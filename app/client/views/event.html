@@ -52,7 +52,7 @@
 						<p>User id: {{comment.user}}</p>
 						<p>{{comment.createdAt}}</p>
 						<p>
-       						<a ng-click="commCollapsed=!commCollapsed;" href>
+       						<a ng-click="commCollapsed=!commCollapsed; getCommentsOnComment(comment._id)" href>
 								Show more...
 							</a>
 							<div ng-show="commCollapsed">
@@ -62,8 +62,8 @@
 										<input type="submit" class="btn btn-success" value="Submit" ng-click="submitCommentOnComment(comment._id)" style="margin-top:3px; float:right; width: 25%">
 									</div>
 								</form><br><br>
-								<div class="profile-list" ng-repeat="c in comment.comments" style="border: 1px solid green; border-radius: 5px; padding: 15px; margin: 5px 25px 0px 25px;">
-									<h4>Comment id: {{c._id}}</h4>
+								<div class="profile-list" ng-repeat="c in commentsFromComment" style="border: 1px solid green; border-radius: 5px; padding: 15px; margin: 5px 25px 0px 25px;">
+									<h4>{{c.text}}</h4>
 									<p>User id: {{c.user}}</p>
 									<p>{{c.createdAt}}</p>
 								</div><br><br>
