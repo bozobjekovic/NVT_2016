@@ -38,7 +38,7 @@
 							</tr>
 							<tr>
 								<td>Creator</td>
-								<td>{{application.creator}}</td>
+								<td>{{creator.email}}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -81,7 +81,7 @@
 					</div>
 					<div ng-if="!showMainType" style="overflow-x: auto; height: 485px; margin-top: 15px;">
 						<section id="cd-timeline" class="cd-container">
-							<div class="cd-timeline-block" ng-repeat="eventDate in timelineEvents"> 
+							<div class="cd-timeline-block" ng-repeat="eventDate in timelineEvents | orderBy: '-date'"> 
 								<div class="cd-timeline-img cd-picture">
 								</div>
 
@@ -104,7 +104,7 @@
 					<div ng-if="showMainType" style="overflow-x: auto; height: 485px; margin-top: 15px;">
 						<div class="clearfix"></div>
 						<div class="">
-							<div class="profile-list" ng-repeat="event in events"
+							<div class="profile-list" ng-repeat="event in events | orderBy: '-timeStamp'"
 							style="border: 1px solid orange; border-radius: 15px; padding: 15px; margin-top: 5px;">
 								<a href ng-click="getEvent(event)">	
 									<h4>{{event.stack}}</h4>
