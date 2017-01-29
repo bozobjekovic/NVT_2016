@@ -1,4 +1,5 @@
 var express = require('express');
+var _ = require('../bower_components/lodash');
 var Comment = require('../../app/model/comment').model;
 
 var AppEvent = require('../../app/model/event');
@@ -37,6 +38,17 @@ commentRouter
     // post new comment on existing comment
     .post('/comment/:id', function(req, res, next) {
         var comment = new Comment(req.body);
+        // var findComment = function(commentID, callback) {
+        //     Comment.findOne({ "_id": commentID }, function (err, comment_) {
+        //         if (comment_ == undefined) {
+        //             _.each(/* lista */, function(subCommentID) {
+        //                 findComment(subCommentID, callback);
+        //             }.bind(this))
+        //         } else {
+        //             callback(comment_);
+        //         }
+        //     });
+        // };
         Comment.findByIdAndUpdate(req.params.id, {$push:{"comments":comment}}, function (err, comment_) {
             if (err) next(err);
             res.json(comment_.comments);

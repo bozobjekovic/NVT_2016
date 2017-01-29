@@ -32,10 +32,12 @@ eventRouter
             res.json(event_);
         });
     }) // Adding new event for application with id, sending mails to all users that are following this app
-    .post('/application/:id', function(req, res, next) {
+    .post('/application/:domain', function(req, res, next) {
         var event = new AppEvent(req.body);
-        Application.findOne({"_id":req.params.id},function (err, app_) {
-            if (err) return next(err);
+        Application.findOne({"domain":req.params.domain},function (err, app_) {
+            if(!app_){
+                return res.json({});
+            }
             event.application = app_;
             event.save(function(err, event_) {
                 if (err) return next(err);

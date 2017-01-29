@@ -1,0 +1,15 @@
+<div class="profile-list" style="border: 2px solid orange; border-radius: 15px; padding: 15px; margin-top: 5px;">
+    <h4>{{comment.text}}</h4>
+    <p>User id: {{comment.user}}</p>
+    <p>{{comment.createdAt | date:'dd-MM-yyyy HH:mm'}}h</p>
+    <form>
+        <div>
+            <textarea class="form-control" rows="4" id="comment" style="resize: none;" placeholder="Leave a Comment..." required ng-model="commOnCommCreate.text"></textarea>
+            <input type="submit" class="btn btn-success" value="Submit" ng-click="submitCommentOnComment(comment._id)" style="margin-top:3px; float:right; width: 25%">
+        </div>
+    </form><br /><br />
+    <div ng-if="comment.comments.length > 0">
+        <div ng-repeat="comment in comment.comments"  ng-include="'views/comments.html'">
+		</div>
+    </div>
+</div>

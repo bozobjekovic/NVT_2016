@@ -8,6 +8,7 @@
 	eventController.$inject = ['$scope', '$routeParams', '$location', '$localStorage', 'eventFactory'];
 
 	function eventController($scope, $routeParams, $location, $localStorage, eventFactory) {
+
 		var param = $routeParams.param;
 
 		$scope.commCreate = {
